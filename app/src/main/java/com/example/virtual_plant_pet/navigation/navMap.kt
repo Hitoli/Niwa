@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import com.example.solus.navigation.navUtils.navScreens
 import com.example.virtual_plant_pet.navigation.AuthNavMap
 import com.example.virtual_plant_pet.navigation.appNavMap
+import com.example.virtual_plant_pet.screen.FightScreen
 import com.example.virtual_plant_pet.screen.FirstOnBoardingScreen
 import com.example.virtual_plant_pet.screen.YourNameScreen
 import com.example.virtual_plant_pet.screen.YourPetNameScreen
@@ -25,21 +26,31 @@ fun navScreen(navaHostController: NavHostController) {
             appNavMap()
         }
 
+
+
         composable(navScreens.OnBoardingScreen.route){
             FirstOnBoardingScreen {
-                navaHostController.navigate(navScreens.PetNameScreen.route)
+                navaHostController.navigate(navScreens.PetNameScreen.route){
+                    popUpTo(navScreens.OnBoardingScreen.route){
+                        inclusive = true
+                    }
+                }
             }
         }
 
         composable(navScreens.PetNameScreen.route){
             YourPetNameScreen(onNavigate = {
-                navaHostController.navigate(navScreens.UserNameScreen.route)
+                navaHostController.navigate(navScreens.UserNameScreen.route){
+                    popUpTo(navScreens.PetNameScreen.route){
+                        inclusive = true
+                    }
+                }
             })
         }
         composable(navScreens.UserNameScreen.route){
             YourNameScreen(onNavigate = {
                 navaHostController.navigate(navScreens.appNavScreen.route){
-                    popUpTo(navScreens.PetNameScreen.route){
+                    popUpTo(navScreens.UserNameScreen.route){
                         inclusive = true
                     }
                 }

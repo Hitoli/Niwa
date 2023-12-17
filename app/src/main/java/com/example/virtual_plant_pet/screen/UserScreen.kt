@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -22,10 +23,13 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -50,14 +54,16 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 import com.example.solus.authScreens.authUtils.MyCircle
 import com.example.virtual_plant_pet.R
+import com.example.virtual_plant_pet.ui.theme.fontFamily
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_background
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_background3
+import com.example.virtual_plant_pet.ui.theme.virtual_plant_background5
 import com.example.virtual_plant_pet.ui.theme.virual_plant_background1
 import com.example.virtual_plant_pet.ui.theme.virual_plant_background2
 
 //@Preview(showBackground = true)
 @Composable
-fun UserScreen(pad: PaddingValues) {
+fun UserScreen(pad: PaddingValues,onFight:()->Unit,onSteal:()->Unit) {
 
 //    UserScreenOnBoardingAlert()
 
@@ -95,49 +101,188 @@ fun UserScreen(pad: PaddingValues) {
             )
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 90.dp),
             verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(
                 modifier = Modifier
-                    .size(30.dp)
+                    .size(8.dp)
             )
 
-            Image(
-                painter = painterResource(id = R.drawable.plant),
-                contentDescription = "plant",
+
+
+            Row(
                 modifier = Modifier
-                    .size(120.dp)
-                    .border(BorderStroke(3.dp, Color.Black), shape = RoundedCornerShape(100.dp))
-                    .padding(12.dp)
-            )
+                    .fillMaxWidth()
+                    .heightIn(40.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                ElevatedCard(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .shadow(
+                            elevation = 10.dp,
+                            spotColor = Color.Gray,
+                            shape = RoundedCornerShape(
+                                topEnd = 16.dp,
+                                topStart = 16.dp,
+                                bottomEnd = 16.dp,
+                                bottomStart = 16.dp
+                            )
+                        )
+                        .border(
+                            border = BorderStroke(0.2.dp, Color.Gray), shape = RoundedCornerShape(
+                                topEnd = 16.dp,
+                                topStart = 16.dp,
+                                bottomEnd = 16.dp,
+                                bottomStart = 16.dp
+                            )
+                        )
+                        .fillMaxWidth(0.45f)
+                        .fillMaxHeight(0.1f)
+                        .clip(
+                            RoundedCornerShape(
+                                topEnd = 16.dp,
+                                topStart = 16.dp,
+                                bottomEnd = 16.dp,
+                                bottomStart = 16.dp
+                            )
+                        ), colors = CardDefaults.cardColors(Color.White)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
 
-            Text(
-                text = "Hitesh",
-                modifier = Modifier.fillMaxWidth(),
-                fontSize = 25.sp,
-                color = Color.Black,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.SansSerif,
-                textAlign = TextAlign.Center
-            )
+                        Image(
+                            painter = painterResource(id = R.drawable.plant3),
+                            contentDescription = "Profile",
+                            modifier = Modifier
+                                .size(60.dp)
+                                .padding(10.dp)
+                        )
+                        Spacer(
+                            modifier = Modifier
+                                .size(6.dp)
+                        )
+                        Text(
+                            text = "Shop",
+                            modifier = Modifier.widthIn(50.dp),
+                            fontSize = 20.sp,
+                            color = Color.Black,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.SansSerif,
+                            textAlign = TextAlign.Start
+                        )
+                        Spacer(
+                            modifier = Modifier
+                                .size(10.dp)
+                        )
+
+
+                    }
+
+                }
+                Spacer(
+                    modifier = Modifier
+                        .size(4.dp)
+                )
+
+                ElevatedCard(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .shadow(
+                            elevation = 10.dp,
+                            spotColor = Color.Gray,
+                            shape = RoundedCornerShape(
+                                topEnd = 16.dp,
+                                topStart = 16.dp,
+                                bottomEnd = 16.dp,
+                                bottomStart = 16.dp
+                            )
+                        )
+                        .border(
+                            border = BorderStroke(0.2.dp, Color.Gray), shape = RoundedCornerShape(
+                                topEnd = 16.dp,
+                                topStart = 16.dp,
+                                bottomEnd = 16.dp,
+                                bottomStart = 16.dp
+                            )
+                        )
+                        .fillMaxWidth(1f)
+                        .fillMaxHeight(0.1f)
+                        .clip(
+                            RoundedCornerShape(
+                                topEnd = 16.dp,
+                                topStart = 16.dp,
+                                bottomEnd = 16.dp,
+                                bottomStart = 16.dp
+                            )
+                        ), colors = CardDefaults.cardColors(Color.White)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+
+                        Image(
+                            painter = painterResource(id = R.drawable.plant4),
+                            contentDescription = "Profile",
+                            modifier = Modifier
+                                .size(60.dp)
+                                .padding(10.dp)
+                        )
+                        Spacer(
+                            modifier = Modifier
+                                .size(6.dp)
+                        )
+                        Text(
+                            text = "Quests",
+                            modifier = Modifier.widthIn(50.dp),
+                            fontSize = 20.sp,
+                            color = Color.Black,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.SansSerif,
+                            textAlign = TextAlign.Start
+                        )
+                        Spacer(
+                            modifier = Modifier
+                                .size(12.dp)
+                        )
+
+
+                    }
+
+                }
+            }
+
+
+
+
             Spacer(
                 modifier = Modifier
-                    .size(30.dp)
+                    .size(8.dp)
             )
 
             Row {
                 Divider(
                     thickness = 1.dp,
                     color = Color.Black,
-                    modifier = Modifier.widthIn(max = 130.dp)
+                    modifier = Modifier.widthIn(max = 100.dp)
                 )
+                Spacer(modifier = Modifier.size(10.dp))
                 MyCircle(size = 10, color = Color.Black)
+                Spacer(modifier = Modifier.size(10.dp))
                 Divider(
                     thickness = 1.dp,
                     color = Color.Black,
-                    modifier = Modifier.widthIn(max = 130.dp)
+                    modifier = Modifier.widthIn(max = 100.dp)
                 )
             }
             ElevatedCard(
@@ -171,31 +316,83 @@ fun UserScreen(pad: PaddingValues) {
                         )
                     ), colors = CardDefaults.cardColors(Color.White)
             ) {
-                Spacer(
-                    modifier = Modifier
-                        .size(30.dp)
-                )
-                Text(
-                    text = "Your Garden",
-                    modifier = Modifier.fillMaxWidth(),
-                    fontSize = 25.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily.SansSerif,
-                    textAlign = TextAlign.Center
-                )
-                Spacer(
-                    modifier = Modifier
-                        .size(30.dp)
-                )
-                LazyVerticalGrid(
-                    columns = GridCells.Adaptive(minSize = 100.dp),
-                    userScrollEnabled = true,
-                    modifier = Modifier.padding(bottom = pad.calculateBottomPadding())
-                ) {
-                    items(plantList) { plants ->
-                        UserScreenPlantCard(plants)
+                Box(modifier = Modifier.fillMaxSize()) {
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.appniva),
+                            contentDescription = "playarea",
+                            modifier = Modifier
+                                .size(350.dp)
+                                .clip(RoundedCornerShape(24.dp))
+
+                        )
+                        Spacer(modifier = Modifier.size(8.dp))
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .heightIn(80.dp)
+                                .padding(bottom = pad.calculateBottomPadding()),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Button(
+                                onClick = {
+                                          onFight()
+                                },
+                                modifier = Modifier
+                                    .heightIn(65.dp)
+                                    .widthIn(150.dp)
+                                    .shadow(
+                                        elevation = 4.dp,
+                                        spotColor = Color.Black,
+                                        shape = RoundedCornerShape(10.dp)
+                                    ),
+                                colors = ButtonDefaults.buttonColors(Color(0xFFFFD700)),
+                                shape = RoundedCornerShape(10.dp)
+                            ) {
+                                Text(
+                                    text = "Fight",
+                                    fontSize = 20.sp,
+                                    color = Color.Black,
+                                    fontFamily = fontFamily
+                                )
+                            }
+                            Spacer(
+                                modifier = Modifier
+                                    .size(8.dp)
+                            )
+                            Button(
+                                onClick = {
+                                          onSteal()
+                                },
+                                modifier = Modifier
+                                    .heightIn(65.dp)
+                                    .widthIn(150.dp)
+                                    .shadow(
+                                        elevation = 4.dp,
+                                        spotColor = Color.Black,
+                                        shape = RoundedCornerShape(10.dp)
+                                    ),
+                                colors = ButtonDefaults.buttonColors(Color.Black),
+                                shape = RoundedCornerShape(10.dp)
+                            ) {
+                                Text(
+                                    text = "Steal",
+                                    fontSize = 20.sp,
+                                    color = Color.White,
+                                    fontFamily = fontFamily
+                                )
+                            }
+
+                        }
                     }
+
                 }
             }
         }
@@ -204,6 +401,35 @@ fun UserScreen(pad: PaddingValues) {
     }
 }
 
+@Composable
+fun UserScreenSheetGarden() {
+    //                Spacer(
+//                    modifier = Modifier
+//                        .size(30.dp)
+//                )
+//                Text(
+//                    text = "Your Garden",
+//                    modifier = Modifier.fillMaxWidth(),
+//                    fontSize = 25.sp,
+//                    color = Color.Black,
+//                    fontWeight = FontWeight.Bold,
+//                    fontFamily = FontFamily.SansSerif,
+//                    textAlign = TextAlign.Center
+//                )
+//                Spacer(
+//                    modifier = Modifier
+//                        .size(30.dp)
+//                )
+//                LazyVerticalGrid(
+//                    columns = GridCells.Adaptive(minSize = 100.dp),
+//                    userScrollEnabled = true,
+//                    modifier = Modifier.padding(bottom = pad.calculateBottomPadding())
+//                ) {
+//                    items(plantList) { plants ->
+//                        UserScreenPlantCard(plants)
+//                    }
+//                }
+}
 
 @Composable
 fun UserScreenPlantCard(Image: Int) {
@@ -248,7 +474,7 @@ fun UserScreenOnBoardingAlert() {
         mutableStateOf(true)
     }
 
-    if(dismiss) {
+    if (dismiss) {
 
         AlertDialog(
             onDismissRequest = { dismiss },
@@ -317,6 +543,6 @@ fun UserScreenOnBoardingAlert() {
 fun UserScreenPreview() {
 //    UserScreenOnBoardingAlert()
     UserScreen(
-        PaddingValues(10.dp)
+        PaddingValues(10.dp), onFight = {}, onSteal = {}
     )
 }

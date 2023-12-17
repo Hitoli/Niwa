@@ -13,4 +13,8 @@ sealed class navScreens(val route:String){
     object PetNameScreen: navScreens( "Pet_Solus")
     object UserNameScreen: navScreens( "User_Solus")
     object OnBoardingScreen: navScreens( "OnBoarding_Solus")
+    object FightScreen: navScreens( "FightScreen_Solus")
+    object StealScreen: navScreens( "StealScreen_Solus")
+    object gameScreens: navScreens( "gameScreens_Solus")
+
 }

@@ -92,3 +92,7 @@ z
 Japp/src/main/java/com/example/virtual_plant_pet/screen/your_name_screen.kt,a\0\a0b97e4c54d5970a77d302f6485ca4231627f759
 ‚
 Rapp/src/main/java/com/example/virtual_plant_pet/screen/first_on_boarding_screen.kt,e\5\e5d67aee13d40d65cc46b525a7465ba27e80b7eb
+v
+Fapp/src/main/java/com/example/virtual_plant_pet/screen/fight_screen.kt,1\b\1ba461d19065617b2ed533f24ee7c025efcde94a
+x
+Happ/src/main/java/com/example/virtual_plant_pet/navigation/gameNavMap.kt,7\a\7a437a2eade289ea9787170044eea94f4c9f3b95

@@ -108,7 +108,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun VirtualPlantScreen(modifier: Modifier = Modifier, pad: PaddingValues) {
-//    VirtualPlantScreenOnBoardingAlert()
+    VirtualPlantScreenOnBoardingAlert()
     val infiniteTransition = rememberInfiniteTransition(label = "")
     val color by infiniteTransition.animateColor(
         initialValue = Color.Red,
@@ -284,8 +284,8 @@ fun VirtualPlantScreen(modifier: Modifier = Modifier, pad: PaddingValues) {
 
                     VirtualPlantScreenPlantFlipCard(
                         cardFace = if (isVisible || isVisible2 || isVisible3) cardFace.next else cardFace,
-                        Mood = if (isVisible) goodMoods.get(1) else badMoods.get(1)
-
+                        Mood = if (isVisible) goodMoods.get(1) else badMoods.get(1),
+                        R.drawable.p6
                     )
 
 
@@ -619,7 +619,7 @@ fun VirtualPlantScreenSheetContent(pad: PaddingValues) {
 }
 
 @Composable
-fun VirtualPlantScreenPlantCard() {
+fun VirtualPlantScreenPlantCard(Image:Int) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -644,7 +644,7 @@ fun VirtualPlantScreenPlantCard() {
                 .align(Alignment.Center), colors = CardDefaults.cardColors(Color.White)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.p10),
+                painter = painterResource(id = Image),
                 contentDescription = "petplantname",
                 modifier = Modifier.size(200.dp)
             )
@@ -948,7 +948,8 @@ fun VirtualPlantScreenPlantCard2(Mood: String) {
 @Composable
 fun VirtualPlantScreenPlantFlipCard(
     cardFace: CardFace,
-    Mood: String
+    Mood: String,
+    Image: Int
 ) {
     val rotation = animateFloatAsState(
         targetValue = cardFace.angle,
@@ -987,7 +988,7 @@ fun VirtualPlantScreenPlantFlipCard(
         ) {
             if (rotation.value <= 90f) {
                 Box(modifier = Modifier.fillMaxSize()) {
-                    VirtualPlantScreenPlantCard()
+                    VirtualPlantScreenPlantCard(Image)
                 }
             } else {
                 Box(modifier = Modifier
