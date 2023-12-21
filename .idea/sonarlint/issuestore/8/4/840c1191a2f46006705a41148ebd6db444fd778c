@@ -21,6 +21,11 @@ Nkotlin:S1481q"*Remove this unused "color" local variable.(î‰µüÿÿÿÿ8Ğ´–Ç1
 9kotlin:S1128P"Remove this unused import.(ÚŠáİ8Ù´–Ç1
 9kotlin:S1128R"Remove this unused import.(”ÑÅ8Ù´–Ç1
 >kotlin:S1128^"Remove this unused import.(„ûáÊıÿÿÿÿ8Š®£ÆÇ1
+>kotlin:S1128d"Remove this unused import.(â²ÔÇÿÿÿÿÿ8–´ÆèÈ1
+9kotlin:S1128e"Remove this unused import.(¦ˆìŠ8¦´ÆèÈ1
+>kotlin:S1128f"Remove this unused import.(»æ­˜ıÿÿÿÿ8¦´ÆèÈ1
+>kotlin:S1128g"Remove this unused import.(íäÓ†ıÿÿÿÿ8¦´ÆèÈ1
+>kotlin:S1128h"Remove this unused import.(é°µ¬şÿÿÿÿ8¦´ÆèÈ1
 vkotlin:S3776n"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.( ô»úÿÿÿÿ8ß´–Ç1
 Lkotlin:S6518Ÿ",Replace function call with indexed accessor.(ÎÅ¥¢8ê´–Ç1
 Lkotlin:S6518Ÿ",Replace function call with indexed accessor.(ÎÅ¥¢8ê´–Ç1
