@@ -67,6 +67,11 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation("com.airbnb.android:lottie-compose:6.0.1")
+
+    //appwrite
+    implementation("io.appwrite:sdk-for-android:4.0.1")
+
 
     //icons
     implementation ("androidx.compose.material:material-icons-extended:1.5.4")
@@ -76,6 +81,10 @@ dependencies {
 
     // Navigation Compose
     implementation("androidx.navigation:navigation-compose:2.7.5")
+
+    //koin
+    implementation ("io.insert-koin:koin-androidx-compose:3.5.3")
+
 
     //ktor
     //kotlinx serialization

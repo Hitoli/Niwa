@@ -1,0 +1,7 @@
+
+@kotlin:S1172Q"(Remove these unused function parameters.(¯®½å
+fkotlin:S117³"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¥Åøž
+okotlin:S117g"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ÎõÁéúÿÿÿÿ
+pkotlin:S117ˆ"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¾ÿÓ›üÿÿÿÿ
+_kotlin:S107J"HThis function has 14 parameters, which is greater than the 7 authorized.(ºæ¨¼
+2kotlin:S1128!"Remove this unused import.(™òæÜ

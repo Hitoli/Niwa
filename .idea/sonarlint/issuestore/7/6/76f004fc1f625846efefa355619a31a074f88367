@@ -1,33 +1,0 @@
-
-Kkotlin:S1172Z",Remove this unused function parameter "pad".(…‰‘ı8ÚÇŞœÇ1
-Mkotlin:S1172Ã"(Remove these unused function parameters.(âÌ¥Œùÿÿÿÿ8ÛÇŞœÇ1
-[kotlin:S1172–"6Use "_" instead of this unused lambda parameter "img".(œ…¦ûÿÿÿÿ8ÛÇŞœÇ1
-rkotlin:S117Ã"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(âÌ¥Œùÿÿÿÿ8åÇŞœÇ1
-rkotlin:S117Ã"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(âÌ¥Œùÿÿÿÿ8åÇŞœÇ1
-rkotlin:S117Ã"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(âÌ¥Œùÿÿÿÿ8åÇŞœÇ1
-mkotlin:S117œ"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¢ğçÒ8åÇŞœÇ1
-rkotlin:S117"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ÎßÏıÿÿÿÿ8åÇŞœÇ1
-rkotlin:S117Ó"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¤êõ¤ûÿÿÿÿ8åÇŞœÇ1
-mkotlin:S117ô"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ÏÊ¤­8åÇŞœÇ1
-wkotlin:S117¤"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¶ûÏåıÿÿÿÿ8æÇŞœÇ1
-wkotlin:S117§"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(İÊ·œÿÿÿÿÿ8æÇŞœÇ1
-wkotlin:S117ª"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(è¹ÇÛÿÿÿÿÿ8æÇŞœÇ1
-Ikotlin:S1481–")Remove this unused "wave" local variable.(ˆü÷¹8÷ÇŞœÇ1
-Rkotlin:S1481“"-Remove this unused "offsety3" local variable.(¸ÉÈ©úÿÿÿÿ8÷ÇŞœÇ1
-Rkotlin:S1481"-Remove this unused "offsetx3" local variable.(ãÕïıûÿÿÿÿ8÷ÇŞœÇ1
-Rkotlin:S1481‡"-Remove this unused "offsety1" local variable.(ë†ßÿÿÿÿÿ8÷ÇŞœÇ1
-Rkotlin:S1481„"-Remove this unused "offsetx1" local variable.(¬æê¦ûÿÿÿÿ8÷ÇŞœÇ1
-Jkotlin:S1481z"+Remove this unused "value2" local variable.(ÈØó8÷ÇŞœÇ1
-Hkotlin:S1481f"*Remove this unused "value" local variable.(ûú…8÷ÇŞœÇ1
-Nkotlin:S1481^"*Remove this unused "color" local variable.(î‰µüÿÿÿÿ8÷ÇŞœÇ1
-Mkotlin:S1481Ô"-Remove this unused "badMoods" local variable.(œúË8÷ÇŞœÇ1
-Skotlin:S1481È".Remove this unused "goodMoods" local variable.(Ÿ–¹‡ÿÿÿÿÿ8÷ÇŞœÇ1
-Skotlin:S1481Ç".Remove this unused "coroutine" local variable.(ì¡Áÿÿÿÿÿ8÷ÇŞœÇ1
->kotlin:S1128"Remove this unused import.(”’ªºûÿÿÿÿ8ıÇŞœÇ1
-9kotlin:S1128"Remove this unused import.(ı…ÑÉ8ıÇŞœÇ1
->kotlin:S1128)"Remove this unused import.(ñŠ˜”ûÿÿÿÿ8ıÇŞœÇ1
->kotlin:S1128@"Remove this unused import.(ô¯Øıÿÿÿÿ8ıÇŞœÇ1
->kotlin:S1128P"Remove this unused import.(»æ­˜ıÿÿÿÿ8„µÆèÈ1
->kotlin:S1128Q"Remove this unused import.(íäÓ†ıÿÿÿÿ8„µÆèÈ1
->kotlin:S1128S"Remove this unused import.(¹²…åøÿÿÿÿ8ıÇŞœÇ1
-mkotlin:S1192À"HDefine a constant instead of duplicating this literal "iscapr " 7 times.(ĞÃµÊıÿÿÿÿ8ÿÇŞœÇ1

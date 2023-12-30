@@ -5,7 +5,7 @@ import com.example.virtual_plant_pet.R
 
 
 data class bottomNavigationdata(
-    val icon: Int = R.drawable.gardenniwaa,
+    val icon: Int = R.drawable.gardenniwa,
     val label: String = "",
     val route: String = ""
 ) {
@@ -16,7 +16,7 @@ data class bottomNavigationdata(
                 navScreens.HomeScreen.route
             ),
             bottomNavigationdata(
-                icon = R.drawable.gardenniwaa,
+                icon = R.drawable.gardenniwa,
                 label = "Garden",
                 navScreens.ProfileScreen.route
             ),

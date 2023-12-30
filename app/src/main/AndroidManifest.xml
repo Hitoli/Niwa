@@ -2,13 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
+        android:name=".BaseApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/niwalogo3"
+        android:icon="@drawable/niwaicons"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/niwalogo3"
+        android:roundIcon="@drawable/niwaicons"
         android:supportsRtl="true"
         android:theme="@style/Theme.Virtual_plant_pet"
         tools:targetApi="31">

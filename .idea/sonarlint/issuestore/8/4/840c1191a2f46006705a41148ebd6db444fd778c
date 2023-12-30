@@ -1,31 +1,0 @@
-
-Ckotlin:S125Ã"Remove this commented out code.(£è¸±ıÿÿÿÿ8®´–Ç1
-Ckotlin:S125¤"Remove this commented out code.(€±Ûİûÿÿÿÿ8®´–Ç1
-mkotlin:S117î"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(Ã—È¬8¶´–Ç1
-rkotlin:S117†"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¶ÈÏùùÿÿÿÿ8¶´–Ç1
-mkotlin:S117·"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¢ğçÒ8¶´–Ç1
-rkotlin:S117¸"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ÎßÏıÿÿÿÿ8¶´–Ç1
-rkotlin:S117ò"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(«ô·ÿÿÿÿÿ8¶´–Ç1
-rkotlin:S117ó"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ˆ™„¤ùÿÿÿÿ8¶´–Ç1
-rkotlin:S117Ô"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¤• ß8¶´–Ç1
-Qkotlin:S1481¶"1Remove this unused "neutralMoods" local variable.(¿şÄ´8Ğ´–Ç1
-Nkotlin:S1481q"*Remove this unused "color" local variable.(î‰µüÿÿÿÿ8Ğ´–Ç1
-9kotlin:S1128"Remove this unused import.(úŠÃ­8Ø´–Ç1
-9kotlin:S1128 "Remove this unused import.(¤½Ñâ8Ù´–Ç1
->kotlin:S1128+"Remove this unused import.(Š…é’ÿÿÿÿÿ8Ù´–Ç1
-9kotlin:S1128>"Remove this unused import.(”ªˆ­8Ù´–Ç1
->kotlin:S1128K"Remove this unused import.(ô¯Øıÿÿÿÿ8Ù´–Ç1
->kotlin:S1128M"Remove this unused import.(ë•ĞÈıÿÿÿÿ8Ù´–Ç1
->kotlin:S1128N"Remove this unused import.(ÔõŠøùÿÿÿÿ8Ù´–Ç1
->kotlin:S1128O"Remove this unused import.(ÇÀ×İıÿÿÿÿ8Ù´–Ç1
-9kotlin:S1128P"Remove this unused import.(ÚŠáİ8Ù´–Ç1
-9kotlin:S1128R"Remove this unused import.(”ÑÅ8Ù´–Ç1
->kotlin:S1128^"Remove this unused import.(„ûáÊıÿÿÿÿ8Š®£ÆÇ1
->kotlin:S1128d"Remove this unused import.(â²ÔÇÿÿÿÿÿ8–´ÆèÈ1
-9kotlin:S1128e"Remove this unused import.(¦ˆìŠ8¦´ÆèÈ1
->kotlin:S1128f"Remove this unused import.(»æ­˜ıÿÿÿÿ8¦´ÆèÈ1
->kotlin:S1128g"Remove this unused import.(íäÓ†ıÿÿÿÿ8¦´ÆèÈ1
->kotlin:S1128h"Remove this unused import.(é°µ¬şÿÿÿÿ8¦´ÆèÈ1
-vkotlin:S3776n"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.( ô»úÿÿÿÿ8ß´–Ç1
-Lkotlin:S6518Ÿ",Replace function call with indexed accessor.(ÎÅ¥¢8ê´–Ç1
-Lkotlin:S6518Ÿ",Replace function call with indexed accessor.(ÎÅ¥¢8ê´–Ç1

@@ -1,0 +1,47 @@
+
+Dkotlin:S1172W",Remove this unused function parameter "pad".(…‰‘ı
+Fkotlin:S1172Æ"(Remove these unused function parameters.(÷·Àƒüÿÿÿÿ
+Tkotlin:S1172“"6Use "_" instead of this unused lambda parameter "img".(ä–‹Æøÿÿÿÿ
+kkotlin:S117Æ"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(÷·Àƒüÿÿÿÿ
+kkotlin:S117Ç"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(Õ·œÕúÿÿÿÿ
+kkotlin:S117È"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(‡Ã÷îøÿÿÿÿ
+fkotlin:S117¦"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¢ğçÒ
+kkotlin:S117§"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ÎßÏıÿÿÿÿ
+kkotlin:S117İ"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¤êõ¤ûÿÿÿÿ
+fkotlin:S117ÿ"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ÏÊ¤­
+fkotlin:S117¯"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(»°ÿ•
+okotlin:S117\"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(…îÒşÿÿÿÿ
+okotlin:S117`"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ˆ³™ıÿÿÿÿ
+okotlin:S117d"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(â£½•ıÿÿÿÿ
+pkotlin:S117§"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¶ûÏåıÿÿÿÿ
+pkotlin:S117ª"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(İÊ·œÿÿÿÿÿ
+pkotlin:S117­"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(è¹ÇÛÿÿÿÿÿ
+Fkotlin:S1481¥"-Remove this unused "corotine" local variable.(ÏòÎî
+Hkotlin:S1481¢"/Remove this unused "isVisible2" local variable.(ç›‡Ì
+Mkotlin:S1481Ÿ"/Remove this unused "isVisible1" local variable.(Ëâø¯ıÿÿÿÿ
+Bkotlin:S1481™")Remove this unused "wave" local variable.(ˆü÷¹
+Kkotlin:S1481–"-Remove this unused "offsety3" local variable.(¸ÉÈ©úÿÿÿÿ
+Kkotlin:S1481“"-Remove this unused "offsetx3" local variable.(ãÕïıûÿÿÿÿ
+Kkotlin:S1481Š"-Remove this unused "offsety1" local variable.(ë†ßÿÿÿÿÿ
+Kkotlin:S1481‡"-Remove this unused "offsetx1" local variable.(¬æê¦ûÿÿÿÿ
+Ckotlin:S1481}"+Remove this unused "value2" local variable.(ÈØó
+Akotlin:S1481i"*Remove this unused "value" local variable.(ûú…
+Mkotlin:S1481d"0Remove this unused "ExploreList" local variable.(â£½•ıÿÿÿÿ
+Kkotlin:S1481`".Remove this unused "BonusList" local variable.(ˆ³™ıÿÿÿÿ
+Tkotlin:S1481["7Remove this unused "infiniteTransition" local variable.(øÿ÷ûÿÿÿÿ
+Fkotlin:S1481Ş"-Remove this unused "badMoods" local variable.(œúË
+Lkotlin:S1481Ò".Remove this unused "goodMoods" local variable.(Ÿ–¹‡ÿÿÿÿÿ
+Lkotlin:S1481Ñ".Remove this unused "coroutine" local variable.(ì¡Áÿÿÿÿÿ
+7kotlin:S1128"Remove this unused import.(ºÂ½ùÿÿÿÿ
+7kotlin:S1128"Remove this unused import.(Œ‰œğøÿÿÿÿ
+2kotlin:S1128"Remove this unused import.(ğ–âš
+7kotlin:S1128"Remove this unused import.(¥ÄŒµûÿÿÿÿ
+2kotlin:S1128"Remove this unused import.(¦Âšš
+7kotlin:S1128"Remove this unused import.(Ó•´Ùùÿÿÿÿ
+2kotlin:S1128"Remove this unused import.(ã´î
+2kotlin:S1128"Remove this unused import.(ß¶İñ
+2kotlin:S11280"Remove this unused import.(Äåì¾
+7kotlin:S1128R"Remove this unused import.(£ñ¹¸ûÿÿÿÿ
+kkotlin:S1192]"NDefine a constant instead of duplicating this literal "Steal a Plant" 3 times.(„€›ëüÿÿÿÿ
+nkotlin:S1192^"VDefine a constant instead of duplicating this literal "Feed Water to a Plant" 3 times.(¯î½Ò
+fkotlin:S1192Ê"HDefine a constant instead of duplicating this literal "iscapr " 7 times.(ĞÃµÊıÿÿÿÿ
