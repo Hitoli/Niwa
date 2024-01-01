@@ -81,6 +81,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.DialogWindowProvider
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.virtual_plant_pet.Presentation.screen.ScreenUtils.ButtonScreen
 import com.example.virtual_plant_pet.R
 import com.example.virtual_plant_pet.Presentation.screen.screenmodals.CardFace
@@ -98,14 +100,8 @@ import kotlinx.coroutines.launch
 fun VirtualPlantScreen(modifier: Modifier = Modifier, pad: PaddingValues) {
 //    VirtualPlantScreenOnBoardingAlert()
     val infiniteTransition = rememberInfiniteTransition(label = "")
-    val color by infiniteTransition.animateColor(
-        initialValue = Color.Red,
-        targetValue = Color.Green,
-        animationSpec = infiniteRepeatable(
-            animation = tween(5000, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
-        ), label = ""
-    )
+
+
 
 
     var cardFace by remember {
@@ -267,7 +263,7 @@ fun VirtualPlantScreen(modifier: Modifier = Modifier, pad: PaddingValues) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .fillMaxHeight(0.4f)
+                        .fillMaxHeight(0.35f)
                 ) {
 
                     VirtualPlantScreenPlantFlipCard(
@@ -319,7 +315,7 @@ fun VirtualPlantScreen(modifier: Modifier = Modifier, pad: PaddingValues) {
 
                     Column(
                         modifier = Modifier
-                            .padding(24.dp)
+                            .padding(10.dp)
                             .fillMaxSize()
                             .padding(bottom = pad.calculateBottomPadding()),
                         verticalArrangement = Arrangement.SpaceEvenly,
@@ -362,10 +358,10 @@ fun VirtualPlantScreen(modifier: Modifier = Modifier, pad: PaddingValues) {
                                     )
                                 }
 
-                                Spacer(modifier = Modifier.size(4.dp))
+                                Spacer(modifier = Modifier.size(1.dp))
                                 Text(
                                     text = "Petalia",
-                                    modifier = Modifier.padding(start = 70.dp)
+                                    modifier = Modifier.padding(start = 65.dp)
                                         .clickable {
                                             coroutineScope.launch {
                                                 SheetState.bottomSheetState.expand()
@@ -415,10 +411,10 @@ fun VirtualPlantScreen(modifier: Modifier = Modifier, pad: PaddingValues) {
                                     isDismiss = it
                                 })
 
-                                Spacer(modifier = Modifier.size(4.dp))
+                                Spacer(modifier = Modifier.size(1.dp))
                                 Text(
                                     text = "Happy :)",
-                                    modifier = Modifier.padding(start = 70.dp)
+                                    modifier = Modifier.padding(start = 65.dp)
                                         .fillMaxWidth(),
                                     fontSize = 18.sp, color = Color.Black,
                                     fontWeight = FontWeight.Light,
@@ -427,7 +423,7 @@ fun VirtualPlantScreen(modifier: Modifier = Modifier, pad: PaddingValues) {
                             }
 
                         }
-                        Spacer(modifier = Modifier.size(12.dp))
+                        Spacer(modifier = Modifier.size(4.dp))
                         Text(
                             text = "Select Nutrition",
                             fontSize = 18.sp, color = Color.Black,

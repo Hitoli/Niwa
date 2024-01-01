@@ -24,6 +24,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -76,36 +77,29 @@ fun FirstOnBoardingScreen(onNavigate:()->Unit) {
             )
     ) {
         ElevatedCard(
+            colors = CardDefaults.cardColors(
+                virtual_plant_backgroundBlackShade.copy(alpha = 0.5f)),
             modifier = Modifier
                 .padding(24.dp)
-                .shadow(
-                    elevation = 10.dp,
-                    spotColor = Color.Gray,
-                    shape = RoundedCornerShape(
-                        16.dp
-                    )
-                )
+                .fillMaxWidth()
+                .fillMaxHeight(0.8f)
                 .border(
                     border = BorderStroke(0.2.dp, Color.Gray), shape = RoundedCornerShape(
                         16.dp
                     )
                 )
-                .fillMaxWidth()
-                .fillMaxHeight(0.8f)
                 .clip(
                     RoundedCornerShape(
                         16.dp
                     )
                 )
-                .align(Alignment.Center), colors = CardDefaults.cardColors(
-                virtual_plant_backgroundBlackShade)
+                .align(Alignment.Center), elevation = CardDefaults.cardElevation(0.dp)
         ){
             Column(
                 modifier = Modifier
+                    .padding(16.dp)
                     .fillMaxWidth()
-                    .fillMaxHeight()
-                    .background(virtual_plant_backgroundBlackShade)
-                    .padding(16.dp),
+                    .fillMaxHeight(),
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally) {
                 Spacer(modifier = Modifier.size(8.dp))
@@ -175,7 +169,8 @@ fun FirstOnBoardingScreen(onNavigate:()->Unit) {
                     easing = LinearEasing
                 )
             ), modifier = Modifier
-                .padding(16.dp).align(Alignment.BottomCenter)
+                .padding(16.dp)
+                .align(Alignment.BottomCenter)
 
         ){
             ButtonScreen(

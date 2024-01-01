@@ -85,6 +85,9 @@ dependencies {
     //koin
     implementation ("io.insert-koin:koin-androidx-compose:3.5.3")
 
+    //sceneview
+    implementation ("io.github.sceneview:arsceneview:2.0.2")
+
 
     //ktor
     //kotlinx serialization

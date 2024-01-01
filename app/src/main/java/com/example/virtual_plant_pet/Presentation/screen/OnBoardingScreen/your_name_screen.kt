@@ -20,6 +20,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
@@ -55,23 +57,19 @@ import com.example.virtual_plant_pet.ui.theme.fontFamily
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_background
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_background3
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_background7
+import com.example.virtual_plant_pet.ui.theme.virtual_plant_background8
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_backgroundBlackShade
 
 @Preview(showBackground = true)
 @Composable
 fun YourNameScreenPreview() {
-    YourNameScreen(onNavigate = {})
+    YourNameScreen(onNavigate = {},"", getUserName = {},empty = true)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun YourNameScreen(onNavigate:()->Unit) {
-  mutableStateOf(false)
+fun YourNameScreen(onNavigate:()->Unit, userName:String, getUserName:(String)->Unit, empty:Boolean) {
 
-
-    var petName by remember {
-        mutableStateOf("")
-    }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -86,27 +84,27 @@ fun YourNameScreen(onNavigate:()->Unit) {
         ElevatedCard(
             modifier = Modifier
                 .padding(16.dp)
-                .shadow(
-                    elevation = 10.dp,
-                    spotColor = Color.Gray,
-                    shape = RoundedCornerShape(
-                        16.dp
-                    )
-                )
+//                .shadow(
+//                    elevation = 10.dp,
+//                    spotColor = Color.Gray,
+//                    shape = RoundedCornerShape(
+//                        16.dp
+//                    )
+//                )
                 .border(
                     border = BorderStroke(0.2.dp, Color.Gray), shape = RoundedCornerShape(
                         16.dp
                     )
                 )
                 .fillMaxWidth()
-                .fillMaxHeight(.35f)
+                .fillMaxHeight(.31f)
                 .clip(
                     RoundedCornerShape(
                         16.dp
                     )
                 )
                 .align(Alignment.Center), colors = CardDefaults.cardColors(
-                virtual_plant_backgroundBlackShade)
+                virtual_plant_backgroundBlackShade.copy(alpha = 0.5f)), elevation = CardDefaults.cardElevation(0.dp)
         ) {
 
             Column(
@@ -121,18 +119,18 @@ fun YourNameScreen(onNavigate:()->Unit) {
                 Text(
                     text = "What is your Name?",
                     modifier = Modifier.fillMaxWidth(),
-                    fontSize = 20.sp,
+                    fontSize = 30.sp,
                     color = Color.White,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Light,
                     fontFamily = FontFamily.SansSerif,
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.size(5.dp))
 
                 OutlinedTextField(
-                    value = petName,
+                    value = userName,
                     onValueChange = {
-                        petName = it
+                        getUserName(it)
 
                     },
                     Modifier
@@ -147,15 +145,41 @@ fun YourNameScreen(onNavigate:()->Unit) {
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedTextColor = Color.White,
                         unfocusedTextColor = Color.White,
-                        focusedBorderColor = Color.White, unfocusedBorderColor = Color.White
+                        focusedBorderColor = Color.White, unfocusedBorderColor = Color.White, focusedContainerColor =  virtual_plant_backgroundBlackShade.copy(alpha = 0.8f)
                     ),
                     leadingIcon = {
                         Icon(
-                            painter = painterResource(id = R.drawable.profilenawai),
+                            imageVector = Icons.Outlined.Person,
                             contentDescription = "UserName",
                             tint = Color.White
                         )
                     })
+                AnimatedVisibility(
+                    visible = empty,
+                    enter = fadeIn(
+                        animationSpec = tween(
+                            durationMillis = 500,
+                            easing = LinearEasing
+                        )
+                    ),
+                    exit = fadeOut(
+                        animationSpec = tween(
+                            durationMillis = 500,
+                            easing = LinearEasing
+                        )
+                    ), modifier = Modifier
+
+                ){
+                    Text(
+                        text = "Please Enter your name...",
+                        modifier = Modifier.fillMaxWidth(),
+                        fontSize = 10.sp,
+                        color = virtual_plant_background8,
+                        fontWeight = FontWeight.Bold,
+                        fontFamily = FontFamily.SansSerif,
+                        textAlign = TextAlign.Center
+                    )
+                }
 
                 Spacer(modifier = Modifier.size(12.dp))
                 Button(

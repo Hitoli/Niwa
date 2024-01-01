@@ -64,31 +64,23 @@ import com.example.virtual_plant_pet.ui.theme.virtual_plant_sheetcolor
 import kotlinx.coroutines.delay
 
 @Composable
-fun SecondOnBoardinScreen(modifier: Modifier = Modifier,onNavigatie:()->Unit) {
-    var usedLoadingAmountPlant by remember {
-        mutableStateOf(0)
-    }
-    var LoadingAmountPlant by remember {
-        mutableStateOf(300)
-    }
+fun SecondOnBoardinScreen(
+    modifier: Modifier = Modifier,
+    onNavigatie: () -> Unit,
+    userName: String,
+    usedLoadingAmountPlant: Int,
+    LoadingAmountPlant: Int,
+    videoTutorialIntro: List<String>,
+    videoTutorialIntro2: List<String>,
+    getUsedLoadingPlant: (Int) -> Unit,
+    visibility:Boolean,
+    getVisibility:(Boolean)->Unit,
+    buttonVisibility:Boolean,
+    getbuttonVisibility:(Boolean)->Unit,
+    counter:Int,
+    getCounter:(Int)->Unit
+) {
     val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.plantonboarding))
-
-    val videoTutorialIntro = listOf<String>(
-        "Welcome, Hitesh",
-        "Niwa is your garden",
-        "Collect Plants from the wild",
-        "Fight other plants to win resources",
-        "If somebody Steals your plant, fight for it",
-        "Care for your garden, and help your plants grow"
-    )
-    val videoTutorialIntro2 = listOf<String>(
-        "Niwa",
-        "Garden",
-        "Wild",
-        "Fight",
-        "Steal",
-        "Feed"
-    )
 
 
     val Loading = animateFloatAsState(
@@ -96,53 +88,45 @@ fun SecondOnBoardinScreen(modifier: Modifier = Modifier,onNavigatie:()->Unit) {
         label = "water",
         animationSpec = tween(durationMillis = 1000)
     )
-    var visibility by remember {
-        mutableStateOf(true)
-    }
-    var buttonVisibility by remember {
-        mutableStateOf(false)
-    }
-    var counter by remember {
-        mutableStateOf(0)
-    }
+
     LaunchedEffect(key1 = Unit) {
         delay(2500)
-        visibility = false
+        getVisibility(false)
         delay(500)
-        counter++
-        usedLoadingAmountPlant += 50
+        getCounter(1)
+        getUsedLoadingPlant(50)
         delay(1000)
-        visibility = true
+        getVisibility(true)
         delay(2500)
-        visibility = false
+        getVisibility(false)
         delay(500)
-        counter++
-        usedLoadingAmountPlant += 50
+        getCounter(1)
+        getUsedLoadingPlant(50)
         delay(1000)
-        visibility = true
+        getVisibility(true)
         delay(2500)
-        visibility = false
+        getVisibility(false)
         delay(500)
-        counter++
-        usedLoadingAmountPlant += 50
+        getCounter(1)
+        getUsedLoadingPlant(50)
         delay(1000)
-        visibility = true
+        getVisibility(true)
         delay(2500)
-        visibility = false
+        getVisibility(false)
         delay(500)
-        counter++
-        usedLoadingAmountPlant += 50
+        getCounter(1)
+        getUsedLoadingPlant(50)
         delay(1000)
-        visibility = true
+        getVisibility(true)
         delay(2500)
-        visibility = false
+        getVisibility(false)
         delay(500)
-        counter++
-        usedLoadingAmountPlant += 50
+        getCounter(1)
+        getUsedLoadingPlant(50)
         delay(1000)
-        visibility = true
-        usedLoadingAmountPlant += 50
-        buttonVisibility=true
+        getVisibility(true)
+        getUsedLoadingPlant(50)
+       getbuttonVisibility(true)
 
 
     }
@@ -166,12 +150,13 @@ fun SecondOnBoardinScreen(modifier: Modifier = Modifier,onNavigatie:()->Unit) {
                 .padding(24.dp)
                 .clip(RoundedCornerShape(16.dp))
                 .background(
-                    virtual_plant_backgroundBlackShade
+                    virtual_plant_backgroundBlackShade.copy(alpha = 0.5f)
                 )
                 .align(
                     Alignment.Center
                 )
         ) {
+
             LottieAnimation(
                 composition = composition,
                 iterations = LottieConstants.IterateForever,
@@ -234,6 +219,7 @@ fun SecondOnBoardinScreen(modifier: Modifier = Modifier,onNavigatie:()->Unit) {
 
             }
             Spacer(modifier = Modifier.size(8.dp))
+
             Canvas(
                 modifier = Modifier
                     .padding(16.dp)
@@ -290,10 +276,10 @@ fun SecondOnBoardinScreen(modifier: Modifier = Modifier,onNavigatie:()->Unit) {
             ), modifier = Modifier
                 .padding(16.dp)
                 .align(Alignment.BottomCenter)
-        ){
+        ) {
             ButtonScreen(
                 value = "Ok, Got it",
-                onClick = {onNavigatie()},
+                onClick = { onNavigatie() },
                 height = 60.dp,
                 width = 300.dp
             )
@@ -304,5 +290,28 @@ fun SecondOnBoardinScreen(modifier: Modifier = Modifier,onNavigatie:()->Unit) {
 @Preview(showBackground = true)
 @Composable
 fun PreviewSecondOnBoardinScreen() {
-    SecondOnBoardinScreen(onNavigatie = {})
+    val videoTutorialIntro = listOf<String>(
+        "Welcome, Hitesh",
+        "Niwa is your garden",
+        "Collect Plants from the wild",
+        "Fight other plants to win resources",
+        "If somebody Steals your plant, fight for it",
+        "Care for your garden, and help your plants grow"
+    )
+    val videoTutorialIntro2 = listOf<String>(
+        "Niwa",
+        "Garden",
+        "Wild",
+        "Fight",
+        "Steal",
+        "Feed"
+    )
+    SecondOnBoardinScreen(
+        onNavigatie = {},
+        userName = "",
+        usedLoadingAmountPlant = 0,
+        LoadingAmountPlant = 100,
+        videoTutorialIntro2 = videoTutorialIntro,
+        videoTutorialIntro = videoTutorialIntro2,
+        getUsedLoadingPlant = {}, buttonVisibility = true, getVisibility = {}, getbuttonVisibility = {}, visibility = true, counter = 0, getCounter = {})
 }

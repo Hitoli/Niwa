@@ -17,7 +17,7 @@ import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.StealSequenc
 import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.StealSequenceScreens.StealScreen
 
 
-fun NavGraphBuilder.gameNavMap(navHostController: NavController, pad: PaddingValues) {
+fun NavGraphBuilder.gameNavMap(navHostController: NavController, pad: PaddingValues,getAppNavMap:()->Unit) {
     navigation(
         startDestination = navScreens.StartFightScreen.route,
         route = navScreens.gameScreens.route
@@ -79,11 +79,7 @@ fun NavGraphBuilder.gameNavMap(navHostController: NavController, pad: PaddingVal
                 isOnVisible = true
             }
             FightScreen(isPad = pad, onGameResult = {
-                navHostController.navigate(navScreens.appNavScreen.route){
-                    popUpTo(navScreens.FightScreen.route){
-                        inclusive=true
-                    }
-                }
+               getAppNavMap()
             }, onFight = {
                     onFightPressed = it
                 },
@@ -102,9 +98,9 @@ fun NavGraphBuilder.gameNavMap(navHostController: NavController, pad: PaddingVal
                     isOnVisible = it
                 }, onUsedAmountPlant2 = {}, usedHealthAmountPlant2 =onUsedAmountPlant2 , totalHealthAmountPlant2 =onTotalAmountPlant2)
         }
-        composable(navScreens.appNavScreen.route) {
-            appNavMap()
-        }
+//        composable(navScreens.appNavScreen.route) {
+//            appNavMap()
+//        }
 
     }
 }

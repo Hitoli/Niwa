@@ -22,6 +22,8 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Category
+import androidx.compose.material.icons.filled.Leaderboard
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -112,9 +114,9 @@ fun OnBoardingForFightScreen(modifier:Modifier= Modifier,onFight:()->Unit, pad:P
                     Spacer(modifier =Modifier.size(16.dp))
                     Text(
                         text = "Spendelite has appeared",
-                        fontSize = 36.sp,
+                        fontSize = 24.sp,
                         color = Color.Black,
-                        fontWeight = FontWeight.Light,
+                        fontWeight = FontWeight.Bold,
                         fontFamily = FontFamily.SansSerif,
                         textAlign = TextAlign.Center,
                         modifier= Modifier.padding(10.dp)
@@ -130,22 +132,23 @@ fun OnBoardingForFightScreen(modifier:Modifier= Modifier,onFight:()->Unit, pad:P
                             modifier = Modifier
                                 .weight(4f),
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Start
+                            horizontalArrangement = Arrangement.Center
                         ) {
-                            Icon(
-                                imageVector = Icons.Filled.Person,
+                            Image(
+                                painter = painterResource(id = R.drawable.fighticon),
                                 contentDescription = "Profile",
                                 modifier = Modifier
-                                    .size(24.dp)
+                                    .size(50.dp)
                                     .padding(5.dp)
                                     .clip(CircleShape)
+
                             )
                             Spacer(modifier = Modifier.size(4.dp))
                             Text(
                                 text = "Level 2",
                                 fontSize = 16.sp,
                                 color = Color.Black,
-                                fontWeight = FontWeight.Light,
+                                fontWeight = FontWeight.Bold,
                                 fontFamily = FontFamily.SansSerif,
                                 textAlign = TextAlign.Start
                             )
@@ -155,79 +158,23 @@ fun OnBoardingForFightScreen(modifier:Modifier= Modifier,onFight:()->Unit, pad:P
                             modifier = Modifier
                                 .weight(4f),
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Start
+                            horizontalArrangement = Arrangement.Center
                         ) {
-                            Icon(
-                                imageVector = Icons.Filled.Person,
+                            Image(
+                                painter = painterResource(id = R.drawable.moodpalnt),
                                 contentDescription = "Profile",
                                 modifier = Modifier
-                                    .size(24.dp)
+                                    .size(50.dp)
                                     .padding(5.dp)
                                     .clip(CircleShape)
+
                             )
                             Spacer(modifier = Modifier.size(4.dp))
                             Text(
                                 text = "Water Type",
                                 fontSize = 16.sp,
                                 color = Color.Black,
-                                fontWeight = FontWeight.Light,
-                                fontFamily = FontFamily.SansSerif,
-                                textAlign = TextAlign.Start
-                            )
-                        }
-                    }
-                    Spacer(modifier =Modifier.size(16.dp))
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth().padding(start= 16.dp, end= 16.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
-                    ){
-                        Row(
-                            modifier = Modifier
-                                .weight(4f),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Start
-                        ) {
-                            Icon(
-                                imageVector = Icons.Filled.Person,
-                                contentDescription = "Profile",
-                                modifier = Modifier
-                                    .size(24.dp)
-                                    .padding(5.dp)
-                                    .clip(CircleShape)
-                            )
-                            Spacer(modifier = Modifier.size(4.dp))
-                            Text(
-                                text = "Poisonous",
-                                fontSize = 16.sp,
-                                color = Color.Black,
-                                fontWeight = FontWeight.Light,
-                                fontFamily = FontFamily.SansSerif,
-                                textAlign = TextAlign.Start
-                            )
-                        }
-                        Spacer(modifier =Modifier.size(4.dp))
-                        Row(
-                            modifier = Modifier
-                                .weight(4f),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Start
-                        ) {
-                            Icon(
-                                imageVector = Icons.Filled.Person,
-                                contentDescription = "Profile",
-                                modifier = Modifier
-                                    .size(24.dp)
-                                    .padding(5.dp)
-                                    .clip(CircleShape)
-                            )
-                            Spacer(modifier = Modifier.size(4.dp))
-                            Text(
-                                text = "Angry",
-                                fontSize = 16.sp,
-                                color = Color.Black,
-                                fontWeight = FontWeight.Light,
+                                fontWeight = FontWeight.Bold,
                                 fontFamily = FontFamily.SansSerif,
                                 textAlign = TextAlign.Start
                             )
@@ -235,13 +182,14 @@ fun OnBoardingForFightScreen(modifier:Modifier= Modifier,onFight:()->Unit, pad:P
                     }
                     Spacer(modifier =Modifier.size(16.dp))
 
+
                     Button(
                         onClick = {
                                   onFight()
                         },
-                        modifier = Modifier
+                        modifier = Modifier.padding(10.dp).offset(y=45.dp)
                             .heightIn(65.dp)
-                            .widthIn(120.dp).offset(y=40.dp)
+                            .widthIn(120.dp)
 
                         ,
                         colors = ButtonDefaults.buttonColors(
@@ -260,36 +208,37 @@ fun OnBoardingForFightScreen(modifier:Modifier= Modifier,onFight:()->Unit, pad:P
                                 textAlign = TextAlign.Start
                             )
                     }
-                    Column(
-                        modifier = Modifier.fillMaxWidth().background(virtual_plant_background7.copy(alpha=0.4f)).height(350.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.SpaceEvenly,
-                    ){
-                        Spacer(modifier =Modifier.size(16.dp))
-                        OnBoardingForFightScreenPlantCard2(R.drawable.p9)
-                        Text(
-                            text = "Your plant",
-                            modifier = Modifier
-                                .widthIn(50.dp),
-                            fontSize = 20.sp,
-                            color = Color.White,
-                            fontWeight = FontWeight.Light,
-                            fontFamily = FontFamily.SansSerif,
-                            textAlign = TextAlign.Center
-                        )
-                        Text(
-                            text = "Level 1",
-                            modifier = Modifier
-                                .widthIn(50.dp),
-                            fontSize = 20.sp,
-                            color = Color.White,
-                            fontWeight = FontWeight.Bold,
-                            fontFamily = FontFamily.SansSerif,
-                            textAlign = TextAlign.Center
-                        )
 
-                    }
 
+
+                }
+                Column(
+                    modifier = Modifier.fillMaxWidth().background(virtual_plant_background7.copy(alpha=0.1f)).fillMaxHeight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                ){
+                    Spacer(modifier =Modifier.size(16.dp))
+                    OnBoardingForFightScreenPlantCard2(R.drawable.p9)
+                    Text(
+                        text = "Your plant",
+                        modifier = Modifier
+                            .widthIn(50.dp),
+                        fontSize = 20.sp,
+                        color = Color.Black,
+                        fontWeight = FontWeight.Light,
+                        fontFamily = FontFamily.SansSerif,
+                        textAlign = TextAlign.Center
+                    )
+                    Text(
+                        text = "Level 1",
+                        modifier = Modifier
+                            .widthIn(50.dp),
+                        fontSize = 20.sp,
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
+                        fontFamily = FontFamily.SansSerif,
+                        textAlign = TextAlign.Center
+                    )
 
                 }
 

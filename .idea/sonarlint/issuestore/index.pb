@@ -110,3 +110,15 @@ dapp/src/main/java/com/example/virtual_plant_pet/Presentation/screen/HomeScreen/
 `app/src/main/java/com/example/virtual_plant_pet/Presentation/screen/ScreenUtils/ButtonsScreen.kt,c\4\c49c28e090eaaf77f657b293567d445f4b97d8eb
 ê
 `app/src/main/java/com/example/virtual_plant_pet/Presentation/screen/ScreenUtils/ButtonScreen2.kt,9\b\9ba8d2a9136043582751d91a862328a53effc7a7
+ï
+eapp/src/main/java/com/example/virtual_plant_pet/Presentation/screen/HomeScreen/HomeUtils/shopItems.kt,f\5\f5116433a00a3d5d4cf2be5cb933f7ea56e841ed
+ù
+mapp/src/main/java/com/example/virtual_plant_pet/Presentation/screen/HomeScreen/onboarding_for_fight_screen.kt,9\1\910977c7262b73c0c99051d503ef5a1b011ec24c
+§
+tapp/src/main/java/com/example/virtual_plant_pet/Presentation/screen/HomeScreen/FightSequenceScreens/FightScreenAR.kt,3\4\3461322091ee7bfba0f4299e4e2863312d5d032c
+Å
+Q.idea/sonarlint/securityhotspotstore/9/1/910977c7262b73c0c99051d503ef5a1b011ec24c,e\9\e955908bcdfbd18fdcf96742792648a1d0d96a20
+Å
+Q.idea/sonarlint/securityhotspotstore/f/5/f5116433a00a3d5d4cf2be5cb933f7ea56e841ed,0\1\01970f6802566b9a5447da7c5e76d54b7a80d66f
+Å
+Q.idea/sonarlint/securityhotspotstore/3/4/3461322091ee7bfba0f4299e4e2863312d5d032c,f\8\f86763f839c5cf0bb0480df1cc17d7a919c6cb72

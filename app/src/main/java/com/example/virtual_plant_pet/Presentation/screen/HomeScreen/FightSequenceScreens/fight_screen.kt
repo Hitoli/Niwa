@@ -2,6 +2,9 @@ package com.example.virtual_plant_pet.Presentation.screen.HomeScreen.FightSequen
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.FastOutLinearInEasing
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
@@ -49,6 +52,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.Path
@@ -61,11 +66,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.example.solus.authScreens.authUtils.MyCircle
 import com.example.virtual_plant_pet.R
 import com.example.virtual_plant_pet.ui.theme.fontFamily
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_background8
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_sheetcolor
 import com.example.virtual_plant_pet.Presentation.screen.screenmodals.PlantAttacks
+import com.example.virtual_plant_pet.ui.theme.virtual_plant_background3
+import com.example.virtual_plant_pet.ui.theme.virtual_plant_background7
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -87,16 +99,18 @@ fun FightScreen(
     usedHealthAmountPlant2: Int,
     totalHealthAmountPlant2: Int,
 ) {
+    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.petalstorm))
+
 
     val infiniteTransition = rememberInfiniteTransition()
     val value by infiniteTransition.animateFloat(
-        initialValue = 0f,
+        initialValue = 2f,
         targetValue = 15f,
         animationSpec = infiniteRepeatable(
             animation = tween(
                 durationMillis = 300,
-                delayMillis = 200,
-                easing = FastOutLinearInEasing
+                delayMillis = 350,
+                easing = FastOutSlowInEasing
             )
         )
     )
@@ -120,144 +134,167 @@ fun FightScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(
+                Brush.linearGradient(
+                    colors = listOf(virtual_plant_background3, virtual_plant_background7),
+                    start = Offset(Float.POSITIVE_INFINITY, 0f),
+                    end = Offset(0f, Float.POSITIVE_INFINITY)
+                )
+            )
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.fightscreen),
-            contentDescription = "landscape",
-            modifier = Modifier
-                .fillMaxSize()
-                .align(Alignment.BottomCenter),
-            contentScale = ContentScale.FillBounds
-        )
+
 
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .heightIn(min = 200.dp)
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 80.dp)
+                .align(Alignment.TopCenter)
+                .padding(bottom = 80.dp, top = 80.dp)
         ) {
-            Column(
+            Box(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
-                    .padding(12.dp)
+                    .padding(end = 10.dp, top = 10.dp)
+                    .height(200.dp)
             ) {
-                ElevatedCard(
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .shadow(
-                            elevation = 10.dp,
-                            spotColor = Color.Gray,
-                            shape = RoundedCornerShape(
-                                topEnd = 16.dp,
-                                topStart = 16.dp,
-                                bottomEnd = 16.dp,
-                                bottomStart = 0.dp
-                            )
-                        )
-                        .border(
-                            border = BorderStroke(0.2.dp, Color.Gray),
-                            shape = RoundedCornerShape(
-                                topEnd = 16.dp,
-                                topStart = 16.dp,
-                                bottomEnd = 16.dp,
-                                bottomStart = 0.dp
-                            )
-                        )
-                        .widthIn(150.dp)
-                        .height(150.dp)
-                        .clip(
-                            RoundedCornerShape(
-                                topEnd = 16.dp,
-                                topStart = 16.dp,
-                                bottomEnd = 16.dp,
-                                bottomStart = 0.dp
-                            )
-                        ), colors = CardDefaults.cardColors(Color.White)
+                Column(
+                    modifier = Modifier, verticalArrangement = Arrangement.SpaceEvenly,
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = "Blum",
-                        color = Color.Black,
+                    ElevatedCard(
                         modifier = Modifier
-                            .padding(top = 6.dp)
-                            .width(150.dp), textAlign = TextAlign.Center
-                    )
-
-
-
-                    Row(
-                        modifier = Modifier
-                            .width(150.dp)
-                            .heightIn(max = 50.dp)
-                            .padding(10.dp)
-                            .clip(RoundedCornerShape(8.dp))
                             .shadow(
                                 elevation = 10.dp,
-                                spotColor = Color.Black,
-                                shape = RoundedCornerShape(8.dp)
-                            ),
-                        horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically
+                                spotColor = Color.Gray,
+                                shape = RoundedCornerShape(
+                                    topEnd = 16.dp,
+                                    topStart = 16.dp,
+                                    bottomEnd = 16.dp,
+                                    bottomStart = 16.dp
+                                )
+                            )
+                            .border(
+                                border = BorderStroke(0.2.dp, Color.Gray),
+                                shape = RoundedCornerShape(
+                                    topEnd = 16.dp,
+                                    topStart = 16.dp,
+                                    bottomEnd = 16.dp,
+                                    bottomStart = 16.dp
+                                )
+                            )
+                            .widthIn(150.dp)
+                            .height(70.dp)
+                            .clip(
+                                RoundedCornerShape(
+                                    topEnd = 16.dp,
+                                    topStart = 16.dp,
+                                    bottomEnd = 16.dp,
+                                    bottomStart = 16.dp
+                                )
+                            ), colors = CardDefaults.cardColors(Color.White)
                     ) {
-                        Canvas(
+                        Text(
+                            text = "Blum",
+                            color = Color.Black,
+                            modifier = Modifier
+                                .padding(top = 6.dp)
+                                .width(150.dp), textAlign = TextAlign.Center
+                        )
+
+                        Row(
                             modifier = Modifier
                                 .width(150.dp)
-                                .height(100.dp)
+                                .heightIn(max = 50.dp)
+                                .padding(10.dp)
                                 .clip(RoundedCornerShape(8.dp))
+                                .shadow(
+                                    elevation = 10.dp,
+                                    spotColor = Color.Black,
+                                    shape = RoundedCornerShape(8.dp)
+                                ),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            val width = size.width
-                            val height = size.height
-                            val waterWavesYPosition = (1 - healthPercentagePlant1.value) * width
-                            val waterPath = Path().apply {
-                                moveTo(
-                                    x = 0f,
-                                    y = 0f
-                                )
-                                lineTo(
-                                    x = waterWavesYPosition,
-                                    y = 0f
-                                )
-                                lineTo(
-                                    x = waterWavesYPosition,
-                                    y = height
-                                )
-                                lineTo(
-                                    x = 0f,
-                                    y = height
-                                )
-                                close()
+                            Canvas(
+                                modifier = Modifier
+                                    .width(150.dp)
+                                    .height(100.dp)
+                                    .clip(RoundedCornerShape(8.dp))
+                            ) {
+                                val width = size.width
+                                val height = size.height
+                                val waterWavesYPosition = (1 - healthPercentagePlant1.value) * width
+                                val waterPath = Path().apply {
+                                    moveTo(
+                                        x = 0f,
+                                        y = 0f
+                                    )
+                                    lineTo(
+                                        x = waterWavesYPosition,
+                                        y = 0f
+                                    )
+                                    lineTo(
+                                        x = waterWavesYPosition,
+                                        y = height
+                                    )
+                                    lineTo(
+                                        x = 0f,
+                                        y = height
+                                    )
+                                    close()
+                                }
+
+                                drawPath(waterPath, virtual_plant_sheetcolor)
+
+
                             }
-
-                            drawPath(waterPath, virtual_plant_sheetcolor)
-
+                            Spacer(modifier = Modifier.size(6.dp))
 
                         }
-                        Spacer(modifier = Modifier.size(6.dp))
-
                     }
 
 
-
-                    Text(
-                        text = "Petal Storm",
-                        modifier = Modifier
-                            .widthIn(150.dp)
-                            .padding(15.dp),
-                        fontSize = 18.sp, color = Color.Black,
-                        fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.Default, textAlign = TextAlign.Center
-                    )
                 }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.p35),
+                    contentDescription = "playarea",
+                    modifier = Modifier
+                        .weight(3f)
+                        .size(100.dp)
+                        .clip(RoundedCornerShape(24.dp))
+                            .offset(
+                                x = if (isOnFightPressed) value.dp else 0.dp
+                            )
+                )
+                Box(modifier = Modifier.width(150.dp).height(100.dp).weight(4f)){
+                    if (isOnFightPressed) {
+                        LottieAnimation(
+                            composition = composition, modifier = Modifier
+                                .size(500.dp)
+
+                        )
+                    }
+                }
+
+
                 if (isOnFightPressed) {
                     Image(
                         painter = painterResource(id = R.drawable.p31),
                         contentDescription = "playarea",
                         modifier = Modifier
-                            .size(130.dp)
+                            .weight(3f)
+                            .size(100.dp)
                             .clip(RoundedCornerShape(24.dp)), colorFilter = ColorFilter.tint(
                             virtual_plant_background8
-                        )
+                        ), alignment = Alignment.CenterStart
                     )
 
                 } else {
@@ -265,28 +302,27 @@ fun FightScreen(
                         painter = painterResource(id = R.drawable.p31),
                         contentDescription = "playarea",
                         modifier = Modifier
-                            .size(130.dp)
+                            .weight(3f)
+                            .size(100.dp)
+
                             .clip(RoundedCornerShape(24.dp)),
                     )
-
                 }
-                Spacer(modifier = Modifier.size(40.dp))
-
             }
 
 
 
-
-            Column(
+            Box(
                 modifier = Modifier
                     .align(Alignment.BottomStart)
-                    .padding(12.dp),
-                verticalArrangement = Arrangement.SpaceEvenly,
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .padding(start = 10.dp, top = 10.dp)
+                    .height(200.dp)
             ) {
+
+
                 ElevatedCard(
                     modifier = Modifier
-                        .padding(10.dp)
+                        .align(Alignment.TopCenter)
                         .shadow(
                             elevation = 10.dp,
                             spotColor = Color.Gray,
@@ -294,7 +330,7 @@ fun FightScreen(
                                 topEnd = 16.dp,
                                 topStart = 16.dp,
                                 bottomEnd = 16.dp,
-                                bottomStart = 0.dp
+                                bottomStart = 16.dp
                             )
                         )
                         .border(
@@ -303,17 +339,17 @@ fun FightScreen(
                                 topEnd = 16.dp,
                                 topStart = 16.dp,
                                 bottomEnd = 16.dp,
-                                bottomStart = 0.dp
+                                bottomStart = 16.dp
                             )
                         )
                         .widthIn(150.dp)
-                        .height(150.dp)
+                        .height(70.dp)
                         .clip(
                             RoundedCornerShape(
                                 topEnd = 16.dp,
                                 topStart = 16.dp,
                                 bottomEnd = 16.dp,
-                                bottomStart = 0.dp
+                                bottomStart = 16.dp
                             )
                         ), colors = CardDefaults.cardColors(Color.White)
                 ) {
@@ -378,45 +414,29 @@ fun FightScreen(
 
                     }
 
-
-
-                    Text(
-                        text = "Poison Seed",
-                        modifier = Modifier
-                            .widthIn(150.dp)
-                            .padding(15.dp),
-                        fontSize = 18.sp, color = Color.Black,
-                        fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.Default, textAlign = TextAlign.Center
-                    )
-
                 }
 
-
-                Column(
-                    Modifier.size(130.dp),
-                    verticalArrangement = Arrangement.SpaceEvenly,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.p35),
-                        contentDescription = "playarea",
-                        modifier = Modifier
-                            .size(130.dp)
-                            .clip(RoundedCornerShape(24.dp))
-                            .offset(
-                                x = if (isOnFightPressed) value.dp else 0.dp,
-                                y = if (isOnFightPressed) -value.dp else 0.dp
-                            )
-
-
-                    )
-
-
-                }
 
             }
+
         }
+        FightScreenSheetContent(pad = isPad, onFightPressed = {
+            onFight(it)
+        }, isOnFightPressed = isOnFightPressed, onUsedAmount = {
+            onUsedAmountPlant1(it)
+        }, isOnAttackingPlant = isOnAttackingPlant, AttakPlants, modifier = Modifier
+            .fillMaxWidth()
+            .height(500.dp)
+            .padding(
+                bottom = 20.dp,
+                top = isPad.calculateTopPadding(),
+                start = 24.dp,
+                end = 24.dp
+            )
+            .align(
+                Alignment.BottomCenter
+            )
+        )
 
 
     }
@@ -427,11 +447,6 @@ fun FightScreen(
     }, onDone = {
         onGameResult()
     })
-    FightScreenSheetContent(pad = isPad, onFightPressed = {
-        onFight(it)
-    }, isOnFightPressed = isOnFightPressed, onUsedAmount = {
-        onUsedAmountPlant1(it)
-    }, isOnAttackingPlant = isOnAttackingPlant, AttakPlants)
 
 
 }
@@ -560,14 +575,12 @@ fun FightScreenSheetContent(
     isOnFightPressed: Boolean,
     onUsedAmount: (Int) -> Unit,
     isOnAttackingPlant: String,
-    AttacksPlant: List<PlantAttacks>
+    AttacksPlant: List<PlantAttacks>, modifier: Modifier = Modifier
 ) {
     val coroutineScope = rememberCoroutineScope()
 
     ElevatedCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = pad.calculateTopPadding() + 20.dp, start = 24.dp, end = 24.dp),
+        modifier = modifier,
         colors = CardDefaults.cardColors(Color.White)
     ) {
         Column(
@@ -619,7 +632,7 @@ fun FightScreenSheetContent(
                                 verticalArrangement = Arrangement.Center
                             ) {
                                 Image(
-                                    painter = painterResource(id=it.plantImgs),
+                                    painter = painterResource(id = it.plantImgs),
                                     contentDescription = "plantAttacks",
                                     modifier = Modifier.size(50.dp)
                                 )
@@ -652,13 +665,13 @@ fun FightScreenPreview() {
         mutableStateOf(false)
     }
     var onTotalAmountPlant1 by remember {
-        mutableStateOf(120)
+        mutableStateOf(400)
     }
     var onUsedAmountPlant1 by remember {
         mutableStateOf(0)
     }
     var onTotalAmountPlant2 by remember {
-        mutableStateOf(120)
+        mutableStateOf(400)
     }
     var onUsedAmountPlant2 by remember {
         mutableStateOf(0)

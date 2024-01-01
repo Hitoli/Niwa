@@ -19,8 +19,10 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -62,6 +64,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 import com.example.solus.authScreens.authUtils.MyCircle
+import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.HomeUtils.shopItems
 import com.example.virtual_plant_pet.Presentation.screen.ScreenUtils.ButtonScreen
 import com.example.virtual_plant_pet.R
 
@@ -72,12 +75,24 @@ import com.example.virtual_plant_pet.ui.theme.virtual_plant_background6
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_background7
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_background72
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_background8
+import com.example.virtual_plant_pet.ui.theme.virtual_plant_backgroundBlackShade
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.get
 
 //@Preview(showBackground = true)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UserScreen(pad: PaddingValues, onFight: () -> Unit, onSteal: () -> Unit) {
+fun UserScreen(
+    pad: PaddingValues,
+    onFight: () -> Unit,
+    onSteal: () -> Unit,
+    dismiss: Boolean,
+    getDismiss: (Boolean) -> Unit,
+    shopList: List<shopItems>,
+    onQuestDismiss: Boolean,
+    getQuestDismiss: (Boolean) -> Unit,
+    getShopProduct: (Int) -> Unit
+) {
     val SheetState = rememberBottomSheetScaffoldState(
         bottomSheetState = SheetState(
             initialValue = SheetValue.Hidden,
@@ -87,38 +102,21 @@ fun UserScreen(pad: PaddingValues, onFight: () -> Unit, onSteal: () -> Unit) {
     )
     val coroutineScope = rememberCoroutineScope()
 
-//    UserScreenOnBoardingAlert()
+//    UserScreenOnBoardingAlert(dismiss = dismiss, getDismiss = {
+//        getDismiss(it)
+//    })
 
-    var plantList = listOf(
-        R.drawable.p3,
-        R.drawable.p2,
-        R.drawable.p4,
-        R.drawable.p5,
-        R.drawable.p6,
-        R.drawable.p7,
-        R.drawable.p1,
-        R.drawable.p8,
-        R.drawable.p9,
-        R.drawable.p10,
-        R.drawable.p11,
-        R.drawable.p12,
-        R.drawable.p13,
-        R.drawable.p14,
-        R.drawable.p15,
-        R.drawable.p16,
-        R.drawable.p17,
-        R.drawable.p18,
-        R.drawable.p19,
-        R.drawable.p20,
-    )
+
     BottomSheetScaffold(
         sheetContent = {
-            UserScreenSheetContent(pad)
+            UserScreenSheetContent(pad, shopList = shopList, getShopProduct = {
+                getShopProduct(it)
+            })
         },
         scaffoldState = SheetState,
         sheetSwipeEnabled = true,
-        containerColor = virtual_plant_background.copy(alpha = 0.3f),
-        sheetContainerColor = virtual_plant_background.copy(alpha = 0.5f),
+        containerColor = virtual_plant_background7.copy(alpha = 0.3f),
+        sheetContainerColor = virtual_plant_background7.copy(alpha = 0.5f),
         sheetDragHandle = {
             Icon(
                 imageVector = Icons.Filled.KeyboardArrowDown,
@@ -153,165 +151,161 @@ fun UserScreen(pad: PaddingValues, onFight: () -> Unit, onSteal: () -> Unit) {
                 )
 
 
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .heightIn(40.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    ElevatedCard(
-                        modifier = Modifier
-                            .padding(16.dp)
-
-//                        .shadow(
-//                            elevation = 20.dp,
-//                            spotColor = Color.Gray,
-//                            shape = RoundedCornerShape(
-//                                topEnd = 16.dp,
-//                                topStart = 16.dp,
-//                                bottomEnd = 16.dp,
-//                                bottomStart = 16.dp
+//                Row(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .heightIn(40.dp),
+//                    verticalAlignment = Alignment.CenterVertically,
+//                    horizontalArrangement = Arrangement.SpaceEvenly
+//                ) {
+//                    ElevatedCard(
+//                        modifier = Modifier
+//                            .padding(16.dp)
+//
+//                            .shadow(
+//                                elevation = 20.dp,
+//                                spotColor = Color.Gray,
+//                                shape = RoundedCornerShape(
+//                                    topEnd = 16.dp,
+//                                    topStart = 16.dp,
+//                                    bottomEnd = 16.dp,
+//                                    bottomStart = 16.dp
+//                                )
 //                            )
-//                        )
-                            .border(
-                                border = BorderStroke(0.2.dp, Color.Gray),
-                                shape = RoundedCornerShape(
-                                    topEnd = 16.dp,
-                                    topStart = 16.dp,
-                                    bottomEnd = 16.dp,
-                                    bottomStart = 16.dp
-                                )
-                            )
-                            .fillMaxWidth(0.45f)
-                            .fillMaxHeight(0.1f)
-                            .clip(
-                                RoundedCornerShape(
-                                    topEnd = 16.dp,
-                                    topStart = 16.dp,
-                                    bottomEnd = 16.dp,
-                                    bottomStart = 16.dp
-                                )
-                            )
-                            .weight(6f),
-                        colors = CardDefaults.cardColors(virtual_plant_background7)
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxSize(),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-
-                            Image(
-                                painter = painterResource(id = R.drawable.shopicons),
-                                contentDescription = "Profile",
-                                modifier = Modifier
-                                    .size(120.dp)
-                                    .padding(5.dp)
-                                    .weight(4f)
-                            )
-
-                            Text(
-                                text = "Shop",
-                                modifier = Modifier
-                                    .widthIn(50.dp)
-                                    .weight(4f)
-                                    .clickable {
-                                        coroutineScope.launch {
-                                            SheetState.bottomSheetState.expand()
-                                        }
-                                    },
-                                fontSize = 20.sp,
-                                color = Color.White,
-                                fontWeight = FontWeight.Bold,
-                                fontFamily = FontFamily.SansSerif,
-                                textAlign = TextAlign.Start
-                            )
-
-
-                        }
-
-                    }
-                    Spacer(
-                        modifier = Modifier
-                            .size(4.dp)
-                    )
-
-                    ElevatedCard(
-                        modifier = Modifier
-                            .padding(16.dp)
-//                        .shadow(
-//                            elevation = 20.dp,
-//                            spotColor = Color.Gray,
-//                            shape = RoundedCornerShape(
-//                                topEnd = 16.dp,
-//                                topStart = 16.dp,
-//                                bottomEnd = 16.dp,
-//                                bottomStart = 16.dp
+//                            .border(
+//                                border = BorderStroke(0.2.dp, Color.Gray),
+//                                shape = RoundedCornerShape(
+//                                    topEnd = 16.dp,
+//                                    topStart = 16.dp,
+//                                    bottomEnd = 16.dp,
+//                                    bottomStart = 16.dp
+//                                )
 //                            )
-//                        )
-                            .border(
-                                border = BorderStroke(0.2.dp, Color.Gray),
-                                shape = RoundedCornerShape(
-                                    topEnd = 16.dp,
-                                    topStart = 16.dp,
-                                    bottomEnd = 16.dp,
-                                    bottomStart = 16.dp
-                                )
-                            )
-                            .fillMaxWidth(0.45f)
-                            .fillMaxHeight(0.1f)
-                            .clip(
-                                RoundedCornerShape(
-                                    topEnd = 16.dp,
-                                    topStart = 16.dp,
-                                    bottomEnd = 16.dp,
-                                    bottomStart = 16.dp
-                                )
-                            )
-                            .weight(6f),
-                        colors = CardDefaults.cardColors(virtual_plant_background7)
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxSize(),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-
-                            Image(
-                                painter = painterResource(id = R.drawable.questicons),
-                                contentDescription = "Profile",
-                                modifier = Modifier
-                                    .size(120.dp)
-                                    .padding(5.dp)
-                                    .weight(4f)
-                            )
-
-                            Text(
-                                text = "Quests",
-                                modifier = Modifier
-                                    .widthIn(50.dp)
-                                    .weight(4f)
-                                    .clickable {
-                                        coroutineScope.launch {
-                                            SheetState.bottomSheetState.expand()
-                                        }
-                                    },
-                                fontSize = 20.sp,
-                                color = Color.White,
-                                fontWeight = FontWeight.Bold,
-                                fontFamily = FontFamily.SansSerif,
-                                textAlign = TextAlign.Start
-                            )
-
-
-                        }
-
-                    }
-                }
-
-
+//                            .fillMaxWidth(0.45f)
+//                            .height(65.dp)
+//                            .clip(
+//                                RoundedCornerShape(
+//                                    topEnd = 16.dp,
+//                                    topStart = 16.dp,
+//                                    bottomEnd = 16.dp,
+//                                    bottomStart = 16.dp
+//                                )
+//                            )
+//                            .weight(6f),
+//                        colors = CardDefaults.cardColors(virtual_plant_background7.copy(alpha = 0.8f)),elevation = CardDefaults.cardElevation(0.dp)
+//                    ) {
+//                        Row(
+//                            modifier = Modifier.fillMaxSize(),
+//                            verticalAlignment = Alignment.CenterVertically,
+//                            horizontalArrangement = Arrangement.SpaceEvenly
+//                        ) {
+//
+//                            Image(
+//                                painter = painterResource(id = R.drawable.shopicons),
+//                                contentDescription = "Profile",
+//                                modifier = Modifier
+//                                    .size(120.dp)
+//                                    .padding(5.dp)
+//                                    .weight(4f)
+//                            )
+//
+//                            Text(
+//                                text = "Shop",
+//                                modifier = Modifier
+//                                    .widthIn(50.dp)
+//                                    .weight(4f)
+//                                    .clickable {
+//                                        coroutineScope.launch {
+//                                            SheetState.bottomSheetState.expand()
+//                                        }
+//                                    },
+//                                fontSize = 20.sp,
+//                                color = Color.White,
+//                                fontWeight = FontWeight.Light,
+//                                fontFamily = FontFamily.SansSerif,
+//                                textAlign = TextAlign.Start
+//                            )
+//
+//
+//                        }
+//
+//                    }
+//                    Spacer(
+//                        modifier = Modifier
+//                            .size(4.dp)
+//                    )
+//
+//                    ElevatedCard(
+//                        modifier = Modifier
+//                            .padding(16.dp)
+//
+//                            .shadow(
+//                                elevation = 20.dp,
+//                                spotColor = Color.Gray,
+//                                shape = RoundedCornerShape(
+//                                    topEnd = 16.dp,
+//                                    topStart = 16.dp,
+//                                    bottomEnd = 16.dp,
+//                                    bottomStart = 16.dp
+//                                )
+//                            )
+//                            .border(
+//                                border = BorderStroke(0.2.dp, Color.Gray),
+//                                shape = RoundedCornerShape(
+//                                    topEnd = 16.dp,
+//                                    topStart = 16.dp,
+//                                    bottomEnd = 16.dp,
+//                                    bottomStart = 16.dp
+//                                )
+//                            )
+//                            .fillMaxWidth(0.45f)
+//                            .height(65.dp)
+//                            .clip(
+//                                RoundedCornerShape(
+//                                    topEnd = 16.dp,
+//                                    topStart = 16.dp,
+//                                    bottomEnd = 16.dp,
+//                                    bottomStart = 16.dp
+//                                )
+//                            )
+//                            .weight(6f),
+//                        colors = CardDefaults.cardColors(virtual_plant_background7.copy(alpha = 0.8f)),elevation = CardDefaults.cardElevation(0.dp)
+//                    ) {
+//                        Row(
+//                            modifier = Modifier.fillMaxSize(),
+//                            verticalAlignment = Alignment.CenterVertically,
+//                            horizontalArrangement = Arrangement.SpaceEvenly
+//                        ) {
+//
+//                            Image(
+//                                painter = painterResource(id = R.drawable.questicons),
+//                                contentDescription = "Profile",
+//                                modifier = Modifier
+//                                    .size(120.dp)
+//                                    .padding(5.dp)
+//                                    .weight(4f)
+//                            )
+//
+//                            Text(
+//                                text = "Quests",
+//                                modifier = Modifier
+//                                    .widthIn(50.dp)
+//                                    .weight(4f)
+//                                    .clickable {
+//                                        getQuestDismiss(true)
+//                                    },
+//                                fontSize = 20.sp,
+//                                color = Color.White,
+//                                fontWeight = FontWeight.Light,
+//                                fontFamily = FontFamily.SansSerif,
+//                                textAlign = TextAlign.Start
+//                            )
+//
+//
+//                        }
+//
+//                    }
+//                }
 
 
                 Spacer(
@@ -319,32 +313,6 @@ fun UserScreen(pad: PaddingValues, onFight: () -> Unit, onSteal: () -> Unit) {
                         .size(8.dp)
                 )
 
-                Row {
-                    Divider(
-                        thickness = 1.dp,
-                        color = virtual_plant_background7,
-                        modifier = Modifier.widthIn(max = 100.dp)
-                    )
-                    Spacer(
-                        modifier = Modifier
-                            .size(10.dp)
-                            .shadow(
-                                elevation = 5.dp,
-                                spotColor = Color.Gray,
-                                shape = CircleShape
-                            )
-                    )
-                    MyCircle(
-                        size = 10, color = virtual_plant_background8.copy(alpha = 0.6f),
-                    )
-                    Spacer(modifier = Modifier.size(10.dp))
-                    Divider(
-                        thickness = 1.dp,
-                        color = virtual_plant_background7,
-
-                        modifier = Modifier.widthIn(max = 100.dp)
-                    )
-                }
                 ElevatedCard(
                     modifier = Modifier
                         .shadow(
@@ -379,12 +347,81 @@ fun UserScreen(pad: PaddingValues, onFight: () -> Unit, onSteal: () -> Unit) {
                 ) {
                     Box(modifier = Modifier.fillMaxSize()) {
                         Column(
+                            modifier = Modifier.fillMaxWidth()
+                                .height(150.dp)
+                                .align(Alignment.TopCenter)
+                                .background( Brush.verticalGradient(
+                                    colors = listOf(virtual_plant_background7, Color.White),
+                                )),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "Welcome, Hitesh",
+                                modifier = Modifier
+                                    .fillMaxWidth().padding(8.dp),
+                                fontSize = 24.sp,
+                                color = Color.White,
+                                fontWeight = FontWeight.Bold,
+                                fontFamily = FontFamily.SansSerif,
+                                textAlign = TextAlign.Center
+                            )
+//                            Row(
+//                                verticalAlignment = Alignment.CenterVertically,
+//                                horizontalArrangement = Arrangement.Center,
+//                                modifier = Modifier.padding(8.dp)
+//                            ) {
+//                                Text(
+//                                    text = "Level: 9",
+//                                    modifier = Modifier
+//                                        .fillMaxWidth()
+//                                        .weight(4f),
+//                                    fontSize = 20.sp,
+//                                    color = Color.White,
+//                                    fontWeight = FontWeight.Bold,
+//                                    fontFamily = FontFamily.SansSerif,
+//                                    textAlign = TextAlign.Center
+//                                )
+//                                Spacer(modifier = Modifier.size(10.dp))
+//                                Text(
+//                                    text = "Plants: 3",
+//                                    modifier = Modifier
+//                                        .fillMaxWidth()
+//                                        .weight(4f),
+//                                    fontSize = 20.sp,
+//                                    color = Color.White,
+//                                    fontWeight = FontWeight.Bold,
+//                                    fontFamily = FontFamily.SansSerif,
+//                                    textAlign = TextAlign.Center
+//                                )
+//                            }
+                            Spacer(modifier = Modifier.size(8.dp))
+                            Row {
+                                Divider(
+                                    thickness = 1.dp,
+                                    color = Color.White,
+                                    modifier = Modifier.widthIn(max = 130.dp)
+                                )
+                                MyCircle(size = 10, color = Color.White)
+                                Divider(
+                                    thickness = 1.dp,
+                                    color = Color.White,
+                                    modifier = Modifier.widthIn(max = 130.dp)
+                                )
+                            }
+                        }
+
+
+                        Spacer(modifier = Modifier.size(8.dp))
+                        Column(
                             modifier = Modifier
                                 .align(Alignment.Center)
                                 .fillMaxSize(),
                             verticalArrangement = Arrangement.Center,
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
+
+
                             Image(
                                 painter = painterResource(id = R.drawable.planthomescreen),
                                 contentDescription = "playarea",
@@ -407,22 +444,19 @@ fun UserScreen(pad: PaddingValues, onFight: () -> Unit, onSteal: () -> Unit) {
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Button(
-                                    onClick = {
-                                        onFight()
-                                    },
+                                    onClick = { onFight() },
                                     modifier = Modifier
                                         .heightIn(65.dp)
                                         .widthIn(120.dp)
-                                        .weight(4f),
-//                                    .shadow(
-//                                        elevation = 10.dp,
-//                                        spotColor = Color.Black,
-//                                        shape = RoundedCornerShape(10.dp)
-//                                    ),
-                                    colors = ButtonDefaults.buttonColors(
-                                        virtual_plant_background7
-                                    ),
-                                    shape = RoundedCornerShape(10.dp)
+                                        .weight(4f)
+                                        .border(
+                                            BorderStroke(
+                                                0.5.dp,
+                                                virtual_plant_backgroundBlackShade
+                                            ), shape = RoundedCornerShape(16.dp)
+                                        ),
+                                    colors = ButtonDefaults.buttonColors(virtual_plant_background7),
+                                    shape = RoundedCornerShape(16.dp)
                                 ) {
                                     Row(
                                         modifier = Modifier
@@ -441,9 +475,11 @@ fun UserScreen(pad: PaddingValues, onFight: () -> Unit, onSteal: () -> Unit) {
                                                 .clip(CircleShape)
 
                                         )
+                                        Spacer(modifier = Modifier.size(2.dp))
+
 
                                         Text(
-                                            text = "Fight",
+                                            text = "Battle",
                                             modifier = Modifier
                                                 .widthIn(50.dp)
                                                 .weight(4f),
@@ -462,23 +498,19 @@ fun UserScreen(pad: PaddingValues, onFight: () -> Unit, onSteal: () -> Unit) {
                                         .size(8.dp)
                                 )
                                 Button(
-                                    onClick = {
-                                        onSteal()
-                                    },
+                                    onClick = { onSteal() },
                                     modifier = Modifier
                                         .heightIn(65.dp)
                                         .widthIn(120.dp)
                                         .weight(4f)
-//                                    .shadow(
-//                                        elevation = 4.dp,
-//                                        spotColor = Color.Black,
-//                                        shape = RoundedCornerShape(10.dp)
-//                                    )
-                                    ,
-                                    colors = ButtonDefaults.buttonColors(
-                                        virtual_plant_background7
-                                    ),
-                                    shape = RoundedCornerShape(10.dp)
+                                        .border(
+                                            BorderStroke(
+                                                0.5.dp,
+                                                virtual_plant_backgroundBlackShade
+                                            ), shape = RoundedCornerShape(16.dp)
+                                        ),
+                                    colors = ButtonDefaults.buttonColors(virtual_plant_background7),
+                                    shape = RoundedCornerShape(16.dp)
                                 ) {
                                     Row(
                                         modifier = Modifier
@@ -495,7 +527,9 @@ fun UserScreen(pad: PaddingValues, onFight: () -> Unit, onSteal: () -> Unit) {
                                                 .size(60.dp)
                                                 .padding(5.dp)
                                                 .clip(CircleShape)
+
                                         )
+                                        Spacer(modifier = Modifier.size(2.dp))
 
                                         Text(
                                             text = "Steal",
@@ -524,81 +558,18 @@ fun UserScreen(pad: PaddingValues, onFight: () -> Unit, onSteal: () -> Unit) {
         }
 
     }
+//    QuestsUserScreen(onQuestDismiss = onQuestDismiss, getQuestDismiss = {
+//        getQuestDismiss(it)
+//    })
 
-}
 
-@Composable
-fun UserScreenSheetGarden() {
-    //                Spacer(
-//                    modifier = Modifier
-//                        .size(30.dp)
-//                )
-//                Text(
-//                    text = "Your Garden",
-//                    modifier = Modifier.fillMaxWidth(),
-//                    fontSize = 25.sp,
-//                    color = Color.Black,
-//                    fontWeight = FontWeight.Bold,
-//                    fontFamily = FontFamily.SansSerif,
-//                    textAlign = TextAlign.Center
-//                )
-//                Spacer(
-//                    modifier = Modifier
-//                        .size(30.dp)
-//                )
-//                LazyVerticalGrid(
-//                    columns = GridCells.Adaptive(minSize = 100.dp),
-//                    userScrollEnabled = true,
-//                    modifier = Modifier.padding(bottom = pad.calculateBottomPadding())
-//                ) {
-//                    items(plantList) { plants ->
-//                        UserScreenPlantCard(plants)
-//                    }
-//                }
-}
-
-@Composable
-fun UserScreenPlantCard(Image: Int) {
-    Box(
-        modifier = Modifier.padding(16.dp)
-
-    ) {
-        ElevatedCard(
-            modifier = Modifier
-                .shadow(
-                    elevation = 10.dp,
-                    spotColor = Color.Gray,
-                    shape = RoundedCornerShape(24.dp)
-                )
-                .border(
-                    border = BorderStroke(0.2.dp, Color.Gray),
-                    shape = RoundedCornerShape(24.dp)
-                )
-                .widthIn(100.dp)
-                .heightIn(100.dp)
-                .clip(
-                    RoundedCornerShape(24.dp)
-                )
-                .align(Alignment.Center), colors = CardDefaults.cardColors(Color.White)
-        ) {
-            Image(
-                painter = painterResource(id = Image),
-                contentDescription = "petplantname",
-                modifier = Modifier.size(100.dp),
-                contentScale = ContentScale.FillBounds
-            )
-        }
-    }
 }
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UserScreenOnBoardingAlert() {
+fun UserScreenOnBoardingAlert(dismiss: Boolean, getDismiss: (Boolean) -> Unit) {
 
-    var dismiss by remember {
-        mutableStateOf(true)
-    }
 
     if (dismiss) {
 
@@ -615,7 +586,7 @@ fun UserScreenOnBoardingAlert() {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.White)
+                    .background(virtual_plant_backgroundBlackShade.copy(alpha = 0.5f))
                     .padding(16.dp),
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -625,7 +596,7 @@ fun UserScreenOnBoardingAlert() {
                     text = "Welcome To Your Garden",
                     modifier = Modifier.fillMaxWidth(),
                     fontSize = 18.sp,
-                    color = Color.Black,
+                    color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily.SansSerif,
                     textAlign = TextAlign.Start
@@ -635,7 +606,7 @@ fun UserScreenOnBoardingAlert() {
                     text = "Collect plants in your garden and take care of them",
                     modifier = Modifier.fillMaxWidth(),
                     fontSize = 16.sp,
-                    color = Color.Black,
+                    color = Color.White,
                     fontWeight = FontWeight.Light,
                     fontFamily = FontFamily.SansSerif,
                     textAlign = TextAlign.Start
@@ -645,18 +616,28 @@ fun UserScreenOnBoardingAlert() {
                     text = "Showcase your garden and compare with others",
                     modifier = Modifier.fillMaxWidth(),
                     fontSize = 16.sp,
-                    color = Color.Black,
+                    color = Color.White,
                     fontWeight = FontWeight.Light,
                     fontFamily = FontFamily.SansSerif,
                     textAlign = TextAlign.Start
                 )
                 Spacer(modifier = Modifier.size(8.dp))
-                ButtonScreen(
-                    value = "Ok, Got it",
-                    onClick = { dismiss = false },
-                    height = 60.dp,
-                    width = 300.dp
-                )
+                Button(
+                    onClick = { getDismiss(false) },
+                    modifier = Modifier
+                        .heightIn(60.dp)
+                        .widthIn(300.dp),
+                    shape = RoundedCornerShape(10.dp),
+                    colors = ButtonDefaults.buttonColors(Color.Transparent),
+                    border = BorderStroke(1.dp, Color.White)
+                ) {
+                    Text(
+                        text = "Ok, Got it",
+                        fontSize = 14.sp,
+                        color = Color.White,
+                        fontFamily = fontFamily
+                    )
+                }
             }
 
         }
@@ -664,54 +645,56 @@ fun UserScreenOnBoardingAlert() {
 }
 
 @Composable
-fun UserScreenSheetContent(pad: PaddingValues) {
+fun UserScreenSheetContent(
+    pad: PaddingValues,
+    shopList: List<shopItems>,
+    getShopProduct: (Int) -> Unit
+) {
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(24.dp)
+            .padding(10.dp)
             .background(
-                Color.White,
+                Color.Transparent,
                 RoundedCornerShape(16.dp)
             )
             .padding(bottom = pad.calculateBottomPadding()),
         verticalArrangement = Arrangement.SpaceEvenly,
-        horizontalAlignment = Alignment.Start
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        items(5) {
-            Row(
+        items(shopList) { ListofItems ->
+            Box(
                 modifier = Modifier
+                    .padding(16.dp)
                     .fillMaxWidth()
-                    .height(100.dp)
-                    .padding(10.dp).shadow(
-                        elevation = 5.dp,
-                        spotColor = Color.Black,
-                        shape = RoundedCornerShape(16.dp)
+                    .height(150.dp)
+                    .background(
+                        Color.White,
+                        RoundedCornerShape(16.dp)
                     )
-                    .border(
-                        BorderStroke(
-                            1.dp,
-                            Color.Black
-                        ), RoundedCornerShape(16.dp)
-                    ).clip(RoundedCornerShape(16.dp)),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.stealicon),
-                    contentDescription = "Profile",
+                    painter = painterResource(id = ListofItems.Image),
+                    contentDescription = "petplantname",
                     modifier = Modifier
-                        .size(60.dp)
-                        .padding(5.dp)
+                        .size(120.dp)
+                        .padding(10.dp)
                         .clip(CircleShape)
+                        .align(Alignment.TopCenter),
+
+                    contentScale = ContentScale.FillBounds
                 )
+                Spacer(modifier = Modifier.size(20.dp))
+
                 Text(
-                    text = "Steal",
+                    text = ListofItems.shopItem,
                     modifier = Modifier
+                        .padding(16.dp)
                         .widthIn(50.dp)
-                        .weight(4f),
+                        .align(Alignment.BottomCenter),
                     fontSize = 20.sp,
                     color = Color.Black,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Light,
                     fontFamily = FontFamily.SansSerif,
                     textAlign = TextAlign.Start
                 )
@@ -722,13 +705,91 @@ fun UserScreenSheetContent(pad: PaddingValues) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun QuestsUserScreen(onQuestDismiss: Boolean, getQuestDismiss: (Boolean) -> Unit) {
+    if (onQuestDismiss) {
+
+        AlertDialog(
+            onDismissRequest = { onQuestDismiss },
+            properties = DialogProperties(true, true),
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.55f)
+                .padding(24.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .background(
+                    virtual_plant_backgroundBlackShade.copy(alpha = 0.8f)
+                )
+        ) {
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .height(200.dp)
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Spacer(modifier = Modifier.size(40.dp))
+
+                Text(
+                    text = "Today's Quest",
+                    fontSize = 24.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.size(24.dp))
+
+
+                Text(
+                    text = "Fight a plant today",
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Light,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.size(24.dp))
+
+                Button(
+                    onClick = { getQuestDismiss(false) },
+                    modifier = Modifier
+                        .heightIn(60.dp)
+                        .widthIn(300.dp),
+                    shape = RoundedCornerShape(10.dp),
+                    colors = ButtonDefaults.buttonColors(Color.Transparent),
+                    border = BorderStroke(1.dp, Color.White)
+                ) {
+                    Text(
+                        text = "Ok, Got it",
+                        fontSize = 14.sp,
+                        color = Color.White,
+                        fontFamily = fontFamily
+                    )
+                }
+            }
+
+
+        }
+    }
+
+
+}
 
 
 @Preview(showBackground = true)
 @Composable
 fun UserScreenPreview() {
-//    UserScreenOnBoardingAlert()
+    val shipList = listOf<shopItems>(
+
+        shopItems(Image = R.drawable.thornyarmor, shopItem = "Thorny Armor"),
+        shopItems(Image = R.drawable.bubbleburst, shopItem = "Bubble Burst"),
+        shopItems(Image = R.drawable.petalstorm, shopItem = "Petal Storm"),
+
+        )
+//    UserScreenOnBoardingAlert(dismiss = true, getDismiss = {})
     UserScreen(
-        PaddingValues(10.dp), onFight = {}, onSteal = {}
+        PaddingValues(10.dp), onFight = {}, onSteal = {}, getDismiss = {}, dismiss =
+        true, getShopProduct = {}, shopList = shipList, getQuestDismiss = {}, onQuestDismiss = false
     )
 }
