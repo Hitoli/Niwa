@@ -1,12 +1,16 @@
 package com.example.virtual_plant_pet.Presentation.screen.HomeScreen.FightSequenceScreens
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.SpringSpec
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
@@ -16,6 +20,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -44,6 +49,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -57,12 +63,14 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
@@ -80,6 +88,7 @@ import com.example.virtual_plant_pet.ui.theme.virtual_plant_background3
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_background7
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -270,11 +279,16 @@ fun FightScreen(
                         .weight(3f)
                         .size(100.dp)
                         .clip(RoundedCornerShape(24.dp))
-                            .offset(
-                                x = if (isOnFightPressed) value.dp else 0.dp
-                            )
+                        .offset(
+                            x = if (isOnFightPressed) value.dp else 0.dp
+                        )
                 )
-                Box(modifier = Modifier.width(150.dp).height(100.dp).weight(4f)){
+                Box(
+                    modifier = Modifier
+                        .width(150.dp)
+                        .height(100.dp)
+                        .weight(4f)
+                ) {
                     if (isOnFightPressed) {
                         LottieAnimation(
                             composition = composition, modifier = Modifier
@@ -419,25 +433,18 @@ fun FightScreen(
 
             }
 
-        }
-        FightScreenSheetContent(pad = isPad, onFightPressed = {
-            onFight(it)
-        }, isOnFightPressed = isOnFightPressed, onUsedAmount = {
-            onUsedAmountPlant1(it)
-        }, isOnAttackingPlant = isOnAttackingPlant, AttakPlants, modifier = Modifier
-            .fillMaxWidth()
-            .height(500.dp)
-            .padding(
-                bottom = 20.dp,
-                top = isPad.calculateTopPadding(),
-                start = 24.dp,
-                end = 24.dp
-            )
-            .align(
-                Alignment.BottomCenter
-            )
-        )
 
+        }
+        FightCardSequenceScreen(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .height(300.dp)
+                .padding(10.dp)
+                .background(
+                    Color.White, RoundedCornerShape(24.dp)
+                )
+        )
 
     }
 
@@ -449,6 +456,164 @@ fun FightScreen(
     })
 
 
+}
+
+@Composable
+fun FightCardSequenceScreen(modifier: Modifier = Modifier) {
+    val InitialPositionx by remember {
+        mutableStateOf(0f)
+    }
+    val InitialPositiony by remember {
+        mutableStateOf(0f)
+    }
+    var offsetX by remember { mutableFloatStateOf(InitialPositionx) }
+    var offsetY by remember { mutableFloatStateOf(InitialPositiony) }
+    var dragging by remember {
+        mutableStateOf(false)
+    }
+    val draganime = remember {
+        SpringSpec<Int>(stiffness = Spring.StiffnessHigh, visibilityThreshold = 1)
+    }
+    val dropanime = remember {
+        SpringSpec<Int>(stiffness = Spring.StiffnessLow, visibilityThreshold = 1)
+    }
+    val animespec = if (dragging) draganime else dropanime
+
+    var offsetXdrag = animateIntAsState(
+        targetValue = offsetX.roundToInt(), animationSpec = animespec,
+        label = "Animation on offset X"
+    )
+    var offsetYdrag = animateIntAsState(
+        targetValue = offsetY.roundToInt(), animationSpec = animespec,
+        label = "Animation on offset Y"
+    )
+    val InitialPositionx2 by remember {
+        mutableStateOf(0f)
+    }
+    val InitialPositiony2 by remember {
+        mutableStateOf(0f)
+    }
+    var offsetX2 by remember { mutableFloatStateOf(InitialPositionx) }
+    var offsetY2 by remember { mutableFloatStateOf(InitialPositiony) }
+    var dragging2 by remember {
+        mutableStateOf(false)
+    }
+    val draganime2 = remember {
+        SpringSpec<Int>(stiffness = Spring.StiffnessHigh, visibilityThreshold = 1)
+    }
+    val dropanime2 = remember {
+        SpringSpec<Int>(stiffness = Spring.StiffnessLow, visibilityThreshold = 1)
+    }
+    val animespec2 = if (dragging) draganime else dropanime
+
+    var offsetXdrag2 = animateIntAsState(
+        targetValue = offsetX.roundToInt(), animationSpec = animespec,
+        label = "Animation on offset X"
+    )
+    var offsetYdrag2 = animateIntAsState(
+        targetValue = offsetY.roundToInt(), animationSpec = animespec,
+        label = "Animation on offset Y"
+    )
+    val InitialPositionx3 by remember {
+        mutableStateOf(0f)
+    }
+    val InitialPositiony3 by remember {
+        mutableStateOf(0f)
+    }
+    var offsetX3 by remember { mutableFloatStateOf(InitialPositionx) }
+    var offsetY3 by remember { mutableFloatStateOf(InitialPositiony) }
+    var dragging3 by remember {
+        mutableStateOf(false)
+    }
+    val draganime3 = remember {
+        SpringSpec<Int>(stiffness = Spring.StiffnessHigh, visibilityThreshold = 1)
+    }
+    val dropanime3 = remember {
+        SpringSpec<Int>(stiffness = Spring.StiffnessLow, visibilityThreshold = 1)
+    }
+    val animespec3 = if (dragging) draganime else dropanime
+
+    var offsetXdrag3 = animateIntAsState(
+        targetValue = offsetX.roundToInt(), animationSpec = animespec,
+        label = "Animation on offset X"
+    )
+    var offsetYdrag3 = animateIntAsState(
+        targetValue = offsetY.roundToInt(), animationSpec = animespec,
+        label = "Animation on offset Y"
+    )
+
+
+    Box(
+        modifier = modifier
+
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth() .height(300.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Box(
+                Modifier
+                    .offset { IntOffset(offsetXdrag.value, offsetYdrag.value) }
+                    .background(Color.Blue, RoundedCornerShape(10.dp))
+                    .size(100.dp, 150.dp)
+                    .pointerInput(Unit) {
+                        detectDragGestures(onDrag = { change, dragAmount ->
+                            change.consume()
+                            dragging = change.pressed
+                            Log.e("dragginf", change.pressed.toString())
+                            offsetX += dragAmount.x
+                            offsetY += dragAmount.y
+                        }, onDragEnd = {
+                            offsetX = InitialPositionx
+                            offsetY = InitialPositiony
+                        })
+                    }
+            )
+            Spacer(modifier = Modifier.size(16.dp))
+            Box(
+                Modifier
+                    .offset { IntOffset(offsetXdrag2.value, offsetXdrag3.value) }
+                    .background(Color.Blue, RoundedCornerShape(10.dp))
+                    .size(100.dp, 150.dp)
+                    .pointerInput(Unit) {
+                        detectDragGestures(onDrag = { change, dragAmount ->
+                            change.consume()
+                            dragging = change.pressed
+                            Log.e("dragginf", change.pressed.toString())
+                            offsetX2 += dragAmount.x
+                            offsetY2 += dragAmount.y
+                        }, onDragEnd = {
+                            offsetX2 = InitialPositionx2
+                            offsetY2 = InitialPositiony2
+                        })
+                    }
+            )
+            Spacer(modifier = Modifier.size(16.dp))
+
+            Box(
+                Modifier
+                    .offset { IntOffset(offsetXdrag3.value, offsetYdrag3.value) }
+                    .background(Color.Blue, RoundedCornerShape(10.dp))
+                    .size(100.dp, 150.dp)
+                    .pointerInput(Unit) {
+                        detectDragGestures(onDrag = { change, dragAmount ->
+                            change.consume()
+                            dragging = change.pressed
+                            Log.e("dragginf", change.pressed.toString())
+                            offsetX3 += dragAmount.x
+                            offsetY3 += dragAmount.y
+                        }, onDragEnd = {
+                            offsetX3 = InitialPositionx3
+                            offsetY3 = InitialPositiony3
+                        })
+                    }
+            )
+        }
+
+
+
+    }
 }
 
 
@@ -563,90 +728,6 @@ fun FightScreenGameResult(onIsVisible: Boolean, onVisible: (Boolean) -> Unit, on
 
 
         }
-    }
-
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun FightScreenSheetContent(
-    pad: PaddingValues,
-    onFightPressed: (Boolean) -> Unit,
-    isOnFightPressed: Boolean,
-    onUsedAmount: (Int) -> Unit,
-    isOnAttackingPlant: String,
-    AttacksPlant: List<PlantAttacks>, modifier: Modifier = Modifier
-) {
-    val coroutineScope = rememberCoroutineScope()
-
-    ElevatedCard(
-        modifier = modifier,
-        colors = CardDefaults.cardColors(Color.White)
-    ) {
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Spacer(modifier = Modifier.size(20.dp))
-            Text(
-                text = isOnAttackingPlant,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 30.dp)
-                    .height(70.dp),
-                fontSize = 32.sp, color = virtual_plant_background8,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.Default, textAlign = TextAlign.Center
-            )
-            AnimatedVisibility(visible = !isOnFightPressed) {
-
-                LazyRow(
-                    modifier = Modifier
-                        .padding(bottom = 10.dp)
-                        .fillMaxWidth()
-                        .background(
-                            Color.White,
-                            RoundedCornerShape(16.dp)
-                        ),
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    items(AttacksPlant) {
-                        ElevatedCard(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable {
-                                    onFightPressed(true)
-                                    coroutineScope.launch {
-                                        delay(1000)
-                                        onFightPressed(false)
-                                        onUsedAmount(90)
-                                    }
-                                }
-                                .height(80.dp), colors = CardDefaults.cardColors(Color.White)
-                        ) {
-                            Column(
-                                modifier = Modifier.size(100.dp),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center
-                            ) {
-                                Image(
-                                    painter = painterResource(id = it.plantImgs),
-                                    contentDescription = "plantAttacks",
-                                    modifier = Modifier.size(50.dp)
-                                )
-                                Text(text = it.attacksName, color = Color.Black)
-                            }
-
-                        }
-                    }
-
-
-                }
-            }
-        }
-
     }
 
 }
