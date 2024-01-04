@@ -65,6 +65,11 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.layout
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInParent
+import androidx.compose.ui.layout.positionInRoot
+import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -109,6 +114,64 @@ fun FightScreen(
     totalHealthAmountPlant2: Int,
 ) {
     val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.petalstorm))
+    var InitialPositionx by remember {
+        mutableStateOf(0f)
+    }
+    var InitialPositiony by remember {
+        mutableStateOf(0f)
+    }
+    var offsetX by remember { mutableFloatStateOf(0f) }
+    var offsetY by remember { mutableFloatStateOf(0f) }
+    var dragging by remember {
+        mutableStateOf(false)
+    }
+    val draganime = remember {
+        SpringSpec<Int>(stiffness = Spring.StiffnessHigh, visibilityThreshold = 1)
+    }
+    val dropanime = remember {
+        SpringSpec<Int>(stiffness = Spring.StiffnessLow, visibilityThreshold = 1)
+    }
+    val animespec = if (dragging) draganime else dropanime
+
+    var offsetXdrag = animateIntAsState(
+        targetValue = offsetX.roundToInt(), animationSpec = animespec,
+        label = "Animation on offset X"
+    )
+    var offsetYdrag = animateIntAsState(
+        targetValue = offsetY.roundToInt(), animationSpec = animespec,
+        label = "Animation on offset Y"
+    )
+
+    var offsetX2 by remember { mutableFloatStateOf(0f) }
+    var offsetY2 by remember { mutableFloatStateOf(0f) }
+    var dragging2 by remember {
+        mutableStateOf(false)
+    }
+
+    var offsetXdrag2 = animateIntAsState(
+        targetValue = offsetX2.roundToInt(), animationSpec = animespec,
+        label = "Animation on offset X"
+    )
+    var offsetYdrag2 = animateIntAsState(
+        targetValue = offsetY2.roundToInt(), animationSpec = animespec,
+        label = "Animation on offset Y"
+    )
+
+    var offsetX3 by remember { mutableFloatStateOf(0f) }
+    var offsetY3 by remember { mutableFloatStateOf(0f) }
+    var dragging3 by remember {
+        mutableStateOf(false)
+    }
+
+
+    var offsetXdrag3 = animateIntAsState(
+        targetValue = offsetX3.roundToInt(), animationSpec = animespec,
+        label = "Animation on offset X"
+    )
+    var offsetYdrag3 = animateIntAsState(
+        targetValue = offsetY3.roundToInt(), animationSpec = animespec,
+        label = "Animation on offset Y"
+    )
 
 
     val infiniteTransition = rememberInfiniteTransition()
@@ -158,7 +221,7 @@ fun FightScreen(
                 .fillMaxWidth()
                 .heightIn(min = 200.dp)
                 .align(Alignment.TopCenter)
-                .padding(bottom = 80.dp, top = 80.dp)
+                .padding(bottom = 80.dp, top = 40.dp)
         ) {
             Box(
                 modifier = Modifier
@@ -435,16 +498,158 @@ fun FightScreen(
 
 
         }
-        FightCardSequenceScreen(
+
+        Row(
+            modifier = Modifier.align(Alignment.Center),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment =
+            Alignment.CenterVertically
+        ) {
+            Box(modifier = Modifier
+                .size(100.dp, 150.dp)
+                .border(
+                    BorderStroke(1.dp, Color.Black),
+                    RoundedCornerShape(16.dp)
+                )
+                .onGloballyPositioned { coordinates ->
+                    InitialPositionx = 0f
+                    InitialPositiony = -coordinates.positionInRoot().y + 230f
+                    Log.e("InitialPositiony", InitialPositiony.toString())
+                    Log.e("InitialPositionx", InitialPositionx.toString())
+                })
+            Spacer(modifier = Modifier.size(8.dp))
+
+            Box(modifier = Modifier
+                .size(100.dp, 150.dp)
+                .border(
+                    BorderStroke(1.dp, Color.Black),
+                    RoundedCornerShape(16.dp)
+                )
+                .onGloballyPositioned { coordinates ->
+                    InitialPositionx = 0f
+                    InitialPositiony = -coordinates.positionInRoot().y + 230f
+                    Log.e("InitialPositiony", InitialPositiony.toString())
+                    Log.e("InitialPositionx", InitialPositionx.toString())
+                })
+            Spacer(modifier = Modifier.size(8.dp))
+
+            Box(modifier = Modifier
+                .size(100.dp, 150.dp)
+                .border(
+                    BorderStroke(1.dp, Color.Black),
+                    RoundedCornerShape(16.dp)
+                )
+                .onGloballyPositioned { coordinates ->
+                    InitialPositionx = 0f
+                    InitialPositiony = -coordinates.positionInRoot().y + 230f
+                    Log.e("InitialPositiony", InitialPositiony.toString())
+                    Log.e("InitialPositionx", InitialPositionx.toString())
+                })
+        }
+
+
+
+        Box(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .height(300.dp)
                 .padding(10.dp)
                 .background(
-                    Color.White, RoundedCornerShape(24.dp)
+                    Color.White.copy(alpha = 0.5f), RoundedCornerShape(24.dp)
                 )
-        )
+
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Box(
+                    Modifier
+                        .offset { IntOffset(offsetXdrag.value, offsetYdrag.value) }
+                        .background(Color.White, RoundedCornerShape(10.dp))
+                        .size(100.dp, 150.dp)
+                        .pointerInput(Unit) {
+                            detectDragGestures(onDrag = { change, dragAmount ->
+                                change.consume()
+                                dragging = change.pressed
+                                Log.e("dragginf", change.pressed.toString())
+                                offsetX += dragAmount.x
+                                offsetY += dragAmount.y
+                            }, onDragEnd = {
+                                offsetX = InitialPositionx
+                                offsetY = InitialPositiony
+                            })
+                        }
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.cards2),
+                        contentDescription = "cards",
+                        contentScale = ContentScale.Crop,
+                        alignment = Alignment.Center,
+                        modifier = Modifier.fillMaxSize().clip(RoundedCornerShape(16.dp))
+                    )
+                }
+                Spacer(modifier = Modifier.size(8.dp))
+                Box(
+                    Modifier
+                        .offset { IntOffset(offsetXdrag2.value, offsetYdrag2.value) }
+                        .background(Color.White, RoundedCornerShape(10.dp))
+                        .size(100.dp, 150.dp)
+                        .pointerInput(Unit) {
+                            detectDragGestures(onDrag = { change, dragAmount ->
+                                change.consume()
+                                dragging2 = change.pressed
+                                Log.e("dragginf", change.pressed.toString())
+                                offsetX2 += dragAmount.x
+                                offsetY2 += dragAmount.y
+                            }, onDragEnd = {
+                                offsetX2 = InitialPositionx
+                                offsetY2 = InitialPositiony
+                            })
+                        }
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.cards3),
+                        contentDescription = "cards",
+                        contentScale = ContentScale.Crop, alignment = Alignment.Center,
+                        modifier = Modifier.fillMaxSize().clip(RoundedCornerShape(16.dp))
+                    )
+                }
+                Spacer(modifier = Modifier.size(8.dp))
+
+                Box(
+                    Modifier
+                        .offset { IntOffset(offsetXdrag3.value, offsetYdrag3.value) }
+                        .background(Color.White, RoundedCornerShape(10.dp))
+                        .size(100.dp, 150.dp)
+                        .pointerInput(Unit) {
+                            detectDragGestures(onDrag = { change, dragAmount ->
+                                change.consume()
+                                dragging3 = change.pressed
+                                Log.e("dragginf", change.pressed.toString())
+                                offsetX3 += dragAmount.x
+                                offsetY3 += dragAmount.y
+                            }, onDragEnd = {
+                                offsetX3 = InitialPositionx
+                                offsetY3 = InitialPositiony
+                            })
+                        }
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.cards),
+                        contentDescription = "cards",
+                        contentScale = ContentScale.Crop, alignment = Alignment.Center,
+                        modifier = Modifier.fillMaxSize().clip(RoundedCornerShape(16.dp))
+                    )
+                }
+            }
+
+
+        }
 
     }
 
@@ -457,165 +662,6 @@ fun FightScreen(
 
 
 }
-
-@Composable
-fun FightCardSequenceScreen(modifier: Modifier = Modifier) {
-    val InitialPositionx by remember {
-        mutableStateOf(0f)
-    }
-    val InitialPositiony by remember {
-        mutableStateOf(0f)
-    }
-    var offsetX by remember { mutableFloatStateOf(InitialPositionx) }
-    var offsetY by remember { mutableFloatStateOf(InitialPositiony) }
-    var dragging by remember {
-        mutableStateOf(false)
-    }
-    val draganime = remember {
-        SpringSpec<Int>(stiffness = Spring.StiffnessHigh, visibilityThreshold = 1)
-    }
-    val dropanime = remember {
-        SpringSpec<Int>(stiffness = Spring.StiffnessLow, visibilityThreshold = 1)
-    }
-    val animespec = if (dragging) draganime else dropanime
-
-    var offsetXdrag = animateIntAsState(
-        targetValue = offsetX.roundToInt(), animationSpec = animespec,
-        label = "Animation on offset X"
-    )
-    var offsetYdrag = animateIntAsState(
-        targetValue = offsetY.roundToInt(), animationSpec = animespec,
-        label = "Animation on offset Y"
-    )
-    val InitialPositionx2 by remember {
-        mutableStateOf(0f)
-    }
-    val InitialPositiony2 by remember {
-        mutableStateOf(0f)
-    }
-    var offsetX2 by remember { mutableFloatStateOf(InitialPositionx) }
-    var offsetY2 by remember { mutableFloatStateOf(InitialPositiony) }
-    var dragging2 by remember {
-        mutableStateOf(false)
-    }
-    val draganime2 = remember {
-        SpringSpec<Int>(stiffness = Spring.StiffnessHigh, visibilityThreshold = 1)
-    }
-    val dropanime2 = remember {
-        SpringSpec<Int>(stiffness = Spring.StiffnessLow, visibilityThreshold = 1)
-    }
-    val animespec2 = if (dragging) draganime else dropanime
-
-    var offsetXdrag2 = animateIntAsState(
-        targetValue = offsetX.roundToInt(), animationSpec = animespec,
-        label = "Animation on offset X"
-    )
-    var offsetYdrag2 = animateIntAsState(
-        targetValue = offsetY.roundToInt(), animationSpec = animespec,
-        label = "Animation on offset Y"
-    )
-    val InitialPositionx3 by remember {
-        mutableStateOf(0f)
-    }
-    val InitialPositiony3 by remember {
-        mutableStateOf(0f)
-    }
-    var offsetX3 by remember { mutableFloatStateOf(InitialPositionx) }
-    var offsetY3 by remember { mutableFloatStateOf(InitialPositiony) }
-    var dragging3 by remember {
-        mutableStateOf(false)
-    }
-    val draganime3 = remember {
-        SpringSpec<Int>(stiffness = Spring.StiffnessHigh, visibilityThreshold = 1)
-    }
-    val dropanime3 = remember {
-        SpringSpec<Int>(stiffness = Spring.StiffnessLow, visibilityThreshold = 1)
-    }
-    val animespec3 = if (dragging) draganime else dropanime
-
-    var offsetXdrag3 = animateIntAsState(
-        targetValue = offsetX.roundToInt(), animationSpec = animespec,
-        label = "Animation on offset X"
-    )
-    var offsetYdrag3 = animateIntAsState(
-        targetValue = offsetY.roundToInt(), animationSpec = animespec,
-        label = "Animation on offset Y"
-    )
-
-
-    Box(
-        modifier = modifier
-
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth() .height(300.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Box(
-                Modifier
-                    .offset { IntOffset(offsetXdrag.value, offsetYdrag.value) }
-                    .background(Color.Blue, RoundedCornerShape(10.dp))
-                    .size(100.dp, 150.dp)
-                    .pointerInput(Unit) {
-                        detectDragGestures(onDrag = { change, dragAmount ->
-                            change.consume()
-                            dragging = change.pressed
-                            Log.e("dragginf", change.pressed.toString())
-                            offsetX += dragAmount.x
-                            offsetY += dragAmount.y
-                        }, onDragEnd = {
-                            offsetX = InitialPositionx
-                            offsetY = InitialPositiony
-                        })
-                    }
-            )
-            Spacer(modifier = Modifier.size(16.dp))
-            Box(
-                Modifier
-                    .offset { IntOffset(offsetXdrag2.value, offsetXdrag3.value) }
-                    .background(Color.Blue, RoundedCornerShape(10.dp))
-                    .size(100.dp, 150.dp)
-                    .pointerInput(Unit) {
-                        detectDragGestures(onDrag = { change, dragAmount ->
-                            change.consume()
-                            dragging = change.pressed
-                            Log.e("dragginf", change.pressed.toString())
-                            offsetX2 += dragAmount.x
-                            offsetY2 += dragAmount.y
-                        }, onDragEnd = {
-                            offsetX2 = InitialPositionx2
-                            offsetY2 = InitialPositiony2
-                        })
-                    }
-            )
-            Spacer(modifier = Modifier.size(16.dp))
-
-            Box(
-                Modifier
-                    .offset { IntOffset(offsetXdrag3.value, offsetYdrag3.value) }
-                    .background(Color.Blue, RoundedCornerShape(10.dp))
-                    .size(100.dp, 150.dp)
-                    .pointerInput(Unit) {
-                        detectDragGestures(onDrag = { change, dragAmount ->
-                            change.consume()
-                            dragging = change.pressed
-                            Log.e("dragginf", change.pressed.toString())
-                            offsetX3 += dragAmount.x
-                            offsetY3 += dragAmount.y
-                        }, onDragEnd = {
-                            offsetX3 = InitialPositionx3
-                            offsetY3 = InitialPositiony3
-                        })
-                    }
-            )
-        }
-
-
-
-    }
-}
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
