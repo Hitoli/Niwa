@@ -1,0 +1,17 @@
+
+Pkotlin:S1172F"1Remove this unused function parameter "userName".(╖Лр▄8≈Мовк1
+lkotlin:S117H"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ГЙ├╘8°Мовк1
+vkotlin:S117V"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(█б╓зЧЪЪЪЪ8°Мовк1
+fkotlin:S107C"HThis function has 14 parameters, which is greater than the 7 authorized.(°▐┘к8═Мовк1
+>kotlin:S1128"Remove this unused import.(┼│В┐ЬЪЪЪЪ8╕Мовк1
+>kotlin:S1128"Remove this unused import.(╟└ъ╪ШЪЪЪЪ8╕Мовк1
+9kotlin:S1128	"Remove this unused import.(╩╗≤у8╕Мовк1
+>kotlin:S1128"Remove this unused import.(рЮ≥эШЪЪЪЪ8╖Мовк1
+9kotlin:S1128"Remove this unused import.(▄╧Ц╕8╖Мовк1
+9kotlin:S1128"Remove this unused import.(сЧхф8╖Мовк1
+>kotlin:S1128!"Remove this unused import.(▀┌Э├ЩЪЪЪЪ8╟съвк1
+9kotlin:S1128""Remove this unused import.(юд█▌8╟съвк1
+9kotlin:S1128#"Remove this unused import.(╘нже8╖Мовк1
+8kotlin:S1128$"Remove this unused import.(├≥╧$8╟съвк1
+>kotlin:S1128,"Remove this unused import.(∙⌠УЪЧЪЪЪЪ8╖Мовк1
+>kotlin:S1128-"Remove this unused import.(┌енЫЗЪЪЪЪ8╖Мовк1

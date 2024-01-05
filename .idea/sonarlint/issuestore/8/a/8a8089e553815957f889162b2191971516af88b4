@@ -1,0 +1,21 @@
+
+Gkotlin:S1172Y"(Remove these unused function parameters.(àñıí8£„À÷Ë1
+\kotlin:S1172‹"7Remove this unused function parameter "getShopProduct".(öÉÅªûÿÿÿÿ8¤„À÷Ë1
+<kotlin:S125i"Remove this commented out code.(âòè98¨„À÷Ë1
+>kotlin:S125š"Remove this commented out code.(§ã†×8«„À÷Ë1
+>kotlin:S125ñ"Remove this commented out code.(§ã†×8ııò÷Ë1
+>kotlin:S125±"Remove this commented out code.(»ŸèÊ8«„À÷Ë1
+qkotlin:S117`"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¤• ß8°„À÷Ë1
+mkotlin:S117™"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¹ıÔŸ8°„À÷Ë1
+ekotlin:S107U"GThis function has 9 parameters, which is greater than the 7 authorized.(Íİ¦²8·„À÷Ë1
+Wkotlin:S1481g"3Remove this unused "coroutineScope" local variable.(•±Éàüÿÿÿÿ8¿„À÷Ë1
+>kotlin:S1128"Remove this unused import.(ê ıõûÿÿÿÿ8Ä„À÷Ë1
+>kotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8Ä„À÷Ë1
+9kotlin:S1128"Remove this unused import.(„ºö8Ä„À÷Ë1
+9kotlin:S1128)"Remove this unused import.(øËÁ8Ä„À÷Ë1
+9kotlin:S1128-"Remove this unused import.(ŠëÙ 8Ä„À÷Ë1
+>kotlin:S1128."Remove this unused import.(‹‚ü†ıÿÿÿÿ8Ä„À÷Ë1
+9kotlin:S1128/"Remove this unused import.(ÀÄ8Ä„À÷Ë1
+8kotlin:S11281"Remove this unused import.(†™¹$8Ä„À÷Ë1
+>kotlin:S1128O"Remove this unused import.(£ñ¹¸ûÿÿÿÿ8Ä„À÷Ë1
+>kotlin:S1128P"Remove this unused import.(«·¤üÿÿÿÿ8Ä„À÷Ë1

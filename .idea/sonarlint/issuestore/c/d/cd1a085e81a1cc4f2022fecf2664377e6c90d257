@@ -1,0 +1,24 @@
+
+Fkotlin:S1172e"(Remove these unused function parameters.(²Ð¸y8¬ë£­Í1
+vkotlin:S117u"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(•±Ùôùÿÿÿÿ8¸ë£­Í1
+qkotlin:S117x"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ä‡«8¸ë£­Í1
+wkotlin:S117½"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ÎõÁéúÿÿÿÿ8¸ë£­Í1
+wkotlin:S117”"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¾ÿÓ›üÿÿÿÿ8¸ë£­Í1
+fkotlin:S107d"HThis function has 14 parameters, which is greater than the 7 authorized.(ºæ¨¼8Ãë£­Í1
+Ukotlin:S1481½"0Remove this unused "AttakPlants" local variable.(ÎõÁéúÿÿÿÿ8Îë£­Í1
+>kotlin:S1128"Remove this unused import.(ºÂ½ùÿÿÿÿ8Õë£­Í1
+>kotlin:S1128"Remove this unused import.(ÌÝ¦éøÿÿÿÿ8Õë£­Í1
+9kotlin:S1128"Remove this unused import.(ð–âš8Õë£­Í1
+>kotlin:S1128"Remove this unused import.(Š÷ƒøÿÿÿÿ8Õë£­Í1
+>kotlin:S1128"Remove this unused import.(ê ýõûÿÿÿÿ8Õë£­Í1
+>kotlin:S1128("Remove this unused import.(®•±âùÿÿÿÿ8Õë£­Í1
+9kotlin:S1128)"Remove this unused import.(™òæÜ8Õë£­Í1
+9kotlin:S11287"Remove this unused import.(©ÎÖÅ8Õë£­Í1
+>kotlin:S1128D"Remove this unused import.(€Ì”üÿÿÿÿ8Õë£­Í1
+>kotlin:S1128F"Remove this unused import.(ÉÔäÇüÿÿÿÿ8Õë£­Í1
+9kotlin:S1128H"Remove this unused import.(£€µ8Õë£­Í1
+>kotlin:S1128T"Remove this unused import.(ûï•‡ûÿÿÿÿ8Õë£­Í1
+>kotlin:S1128^"Remove this unused import.(Ó¸Ñÿÿÿÿÿ8Õë£­Í1
+>kotlin:S1128_"Remove this unused import.(£ñ¹¸ûÿÿÿÿ8Õë£­Í1
+vkotlin:S1192Š"VDefine a constant instead of duplicating this literal "Animation on offset X" 3 times.(á“ÝÄ8×ë£­Í1
+{kotlin:S1192Ž"VDefine a constant instead of duplicating this literal "Animation on offset Y" 3 times.(Žò¡¸ýÿÿÿÿ8×ë£­Í1
