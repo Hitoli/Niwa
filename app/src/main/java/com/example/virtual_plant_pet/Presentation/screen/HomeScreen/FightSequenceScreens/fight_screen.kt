@@ -219,172 +219,113 @@ fun FightScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(min = 200.dp)
+                .heightIn(max = 280.dp)
                 .align(Alignment.TopCenter)
                 .padding(bottom = 80.dp, top = 40.dp)
         ) {
+
+
             Box(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(end = 10.dp, top = 10.dp)
                     .height(200.dp)
             ) {
-                Column(
-                    modifier = Modifier, verticalArrangement = Arrangement.SpaceEvenly,
-                    horizontalAlignment = Alignment.CenterHorizontally
+
+                ElevatedCard(
+                    modifier = Modifier
+                        .shadow(
+                            elevation = 10.dp,
+                            spotColor = Color.Gray,
+                            shape = RoundedCornerShape(
+                                topEnd = 16.dp,
+                                topStart = 16.dp,
+                                bottomEnd = 16.dp,
+                                bottomStart = 16.dp
+                            )
+                        )
+                        .border(
+                            border = BorderStroke(0.2.dp, Color.Gray),
+                            shape = RoundedCornerShape(
+                                topEnd = 16.dp,
+                                topStart = 16.dp,
+                                bottomEnd = 16.dp,
+                                bottomStart = 16.dp
+                            )
+                        )
+                        .widthIn(150.dp)
+                        .height(70.dp)
+                        .clip(
+                            RoundedCornerShape(
+                                topEnd = 16.dp,
+                                topStart = 16.dp,
+                                bottomEnd = 16.dp,
+                                bottomStart = 16.dp
+                            )
+                        ), colors = CardDefaults.cardColors(Color.White)
                 ) {
-                    ElevatedCard(
+                    Text(
+                        text = "Blum",
+                        color = Color.Black,
                         modifier = Modifier
+                            .padding(top = 6.dp)
+                            .width(150.dp), textAlign = TextAlign.Center
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .width(150.dp)
+                            .heightIn(max = 50.dp)
+                            .padding(10.dp)
+                            .clip(RoundedCornerShape(8.dp))
                             .shadow(
                                 elevation = 10.dp,
-                                spotColor = Color.Gray,
-                                shape = RoundedCornerShape(
-                                    topEnd = 16.dp,
-                                    topStart = 16.dp,
-                                    bottomEnd = 16.dp,
-                                    bottomStart = 16.dp
-                                )
-                            )
-                            .border(
-                                border = BorderStroke(0.2.dp, Color.Gray),
-                                shape = RoundedCornerShape(
-                                    topEnd = 16.dp,
-                                    topStart = 16.dp,
-                                    bottomEnd = 16.dp,
-                                    bottomStart = 16.dp
-                                )
-                            )
-                            .widthIn(150.dp)
-                            .height(70.dp)
-                            .clip(
-                                RoundedCornerShape(
-                                    topEnd = 16.dp,
-                                    topStart = 16.dp,
-                                    bottomEnd = 16.dp,
-                                    bottomStart = 16.dp
-                                )
-                            ), colors = CardDefaults.cardColors(Color.White)
+                                spotColor = Color.Black,
+                                shape = RoundedCornerShape(8.dp)
+                            ),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(
-                            text = "Blum",
-                            color = Color.Black,
-                            modifier = Modifier
-                                .padding(top = 6.dp)
-                                .width(150.dp), textAlign = TextAlign.Center
-                        )
-
-                        Row(
+                        Canvas(
                             modifier = Modifier
                                 .width(150.dp)
-                                .heightIn(max = 50.dp)
-                                .padding(10.dp)
+                                .height(100.dp)
                                 .clip(RoundedCornerShape(8.dp))
-                                .shadow(
-                                    elevation = 10.dp,
-                                    spotColor = Color.Black,
-                                    shape = RoundedCornerShape(8.dp)
-                                ),
-                            horizontalArrangement = Arrangement.Center,
-                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Canvas(
-                                modifier = Modifier
-                                    .width(150.dp)
-                                    .height(100.dp)
-                                    .clip(RoundedCornerShape(8.dp))
-                            ) {
-                                val width = size.width
-                                val height = size.height
-                                val waterWavesYPosition = (1 - healthPercentagePlant1.value) * width
-                                val waterPath = Path().apply {
-                                    moveTo(
-                                        x = 0f,
-                                        y = 0f
-                                    )
-                                    lineTo(
-                                        x = waterWavesYPosition,
-                                        y = 0f
-                                    )
-                                    lineTo(
-                                        x = waterWavesYPosition,
-                                        y = height
-                                    )
-                                    lineTo(
-                                        x = 0f,
-                                        y = height
-                                    )
-                                    close()
-                                }
-
-                                drawPath(waterPath, virtual_plant_sheetcolor)
-
-
+                            val width = size.width
+                            val height = size.height
+                            val waterWavesYPosition = (1 - healthPercentagePlant1.value) * width
+                            val waterPath = Path().apply {
+                                moveTo(
+                                    x = 0f,
+                                    y = 0f
+                                )
+                                lineTo(
+                                    x = waterWavesYPosition,
+                                    y = 0f
+                                )
+                                lineTo(
+                                    x = waterWavesYPosition,
+                                    y = height
+                                )
+                                lineTo(
+                                    x = 0f,
+                                    y = height
+                                )
+                                close()
                             }
-                            Spacer(modifier = Modifier.size(6.dp))
+
+                            drawPath(waterPath, virtual_plant_sheetcolor)
+
 
                         }
-                    }
+                        Spacer(modifier = Modifier.size(6.dp))
 
-
-                }
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.BottomCenter),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.p35),
-                    contentDescription = "playarea",
-                    modifier = Modifier
-                        .weight(3f)
-                        .size(100.dp)
-                        .clip(RoundedCornerShape(24.dp))
-                        .offset(
-                            x = if (isOnFightPressed) value.dp else 0.dp
-                        )
-                )
-                Box(
-                    modifier = Modifier
-                        .width(150.dp)
-                        .height(100.dp)
-                        .weight(4f)
-                ) {
-                    if (isOnFightPressed) {
-                        LottieAnimation(
-                            composition = composition, modifier = Modifier
-                                .size(500.dp)
-
-                        )
                     }
                 }
 
 
-                if (isOnFightPressed) {
-                    Image(
-                        painter = painterResource(id = R.drawable.p31),
-                        contentDescription = "playarea",
-                        modifier = Modifier
-                            .weight(3f)
-                            .size(100.dp)
-                            .clip(RoundedCornerShape(24.dp)), colorFilter = ColorFilter.tint(
-                            virtual_plant_background8
-                        ), alignment = Alignment.CenterStart
-                    )
 
-                } else {
-                    Image(
-                        painter = painterResource(id = R.drawable.p31),
-                        contentDescription = "playarea",
-                        modifier = Modifier
-                            .weight(3f)
-                            .size(100.dp)
-
-                            .clip(RoundedCornerShape(24.dp)),
-                    )
-                }
             }
 
 
@@ -495,18 +436,72 @@ fun FightScreen(
 
 
             }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.p35),
+                    contentDescription = "playarea",
+                    modifier = Modifier
+                        .weight(3f)
+                        .size(100.dp)
+                        .clip(RoundedCornerShape(24.dp))
+                        .offset(
+                            x = if (isOnFightPressed) value.dp else 0.dp
+                        )
+                )
+                Box(
+                    modifier = Modifier
+                        .width(150.dp)
+                        .height(100.dp)
+                        .weight(4f)
+                ) {
+                    if (isOnFightPressed) {
+                        LottieAnimation(
+                            composition = composition, modifier = Modifier
+                                .size(500.dp)
+
+                        )
+                    }
+                }
+
+
+                if (isOnFightPressed) {
+                    Image(
+                        painter = painterResource(id = R.drawable.p31),
+                        contentDescription = "playarea",
+                        modifier = Modifier
+                            .weight(3f)
+                            .size(100.dp)
+                            .clip(RoundedCornerShape(24.dp)), colorFilter = ColorFilter.tint(
+                            virtual_plant_background8
+                        ), alignment = Alignment.CenterStart
+                    )
+
+                } else {
+                    Image(
+                        painter = painterResource(id = R.drawable.p31),
+                        contentDescription = "playarea",
+                        modifier = Modifier
+                            .weight(3f)
+                            .size(100.dp)
+
+                            .clip(RoundedCornerShape(24.dp)),
+                    )
+                }
+            }
+
 
 
         }
 
-        Row(
-            modifier = Modifier.align(Alignment.Center),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment =
-            Alignment.CenterVertically
-        ) {
-            Box(modifier = Modifier
-                .size(100.dp, 150.dp)
+
+            Box(modifier = Modifier.fillMaxWidth().height(200.dp).padding(16.dp)
+                .align(Alignment.Center)
                 .border(
                     BorderStroke(1.dp, Color.Black),
                     RoundedCornerShape(16.dp)
@@ -519,33 +514,6 @@ fun FightScreen(
                 })
             Spacer(modifier = Modifier.size(8.dp))
 
-            Box(modifier = Modifier
-                .size(100.dp, 150.dp)
-                .border(
-                    BorderStroke(1.dp, Color.Black),
-                    RoundedCornerShape(16.dp)
-                )
-                .onGloballyPositioned { coordinates ->
-                    InitialPositionx = 0f
-                    InitialPositiony = -coordinates.positionInRoot().y + 230f
-                    Log.e("InitialPositiony", InitialPositiony.toString())
-                    Log.e("InitialPositionx", InitialPositionx.toString())
-                })
-            Spacer(modifier = Modifier.size(8.dp))
-
-            Box(modifier = Modifier
-                .size(100.dp, 150.dp)
-                .border(
-                    BorderStroke(1.dp, Color.Black),
-                    RoundedCornerShape(16.dp)
-                )
-                .onGloballyPositioned { coordinates ->
-                    InitialPositionx = 0f
-                    InitialPositiony = -coordinates.positionInRoot().y + 230f
-                    Log.e("InitialPositiony", InitialPositiony.toString())
-                    Log.e("InitialPositionx", InitialPositionx.toString())
-                })
-        }
 
 
 
