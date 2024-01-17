@@ -1,0 +1,18 @@
+
+vkotlin:S117Y"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(•±Ùôùÿÿÿÿ8Ò‹ƒæĞ1
+qkotlin:S117\"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ä‡«8Ó‹ƒæĞ1
+Qkotlin:S1481C"-Remove this unused "contains" local variable.(‡Áô¤úÿÿÿÿ8×‹ƒæĞ1
+Skotlin:S1481>"/Remove this unused "heightinPX" local variable.(”ª‰×şÿÿÿÿ8×‹ƒæĞ1
+Rkotlin:S1481=".Remove this unused "widthinPX" local variable.(’Ê‘­ÿÿÿÿÿ8×‹ƒæĞ1
+Rkotlin:S14819".Remove this unused "alignment" local variable.(ÏÌ–ıúÿÿÿÿ8×‹ƒæĞ1
+9kotlin:S1128"Remove this unused import.(Ãñäÿ8Ù‹ƒæĞ1
+>kotlin:S1128"Remove this unused import.(û¢ËÓùÿÿÿÿ8Ù‹ƒæĞ1
+>kotlin:S1128"Remove this unused import.(¨¤º÷şÿÿÿÿ8Ù‹ƒæĞ1
+9kotlin:S1128"Remove this unused import.(šÜ•„8Ù‹ƒæĞ1
+9kotlin:S1128"Remove this unused import.(½Ì¥¦8ÏéÁæĞ1
+9kotlin:S1128"Remove this unused import.(æ›†Î8âª»æĞ1
+>kotlin:S1128""Remove this unused import.(œ¡©üÿÿÿÿ8Ù‹ƒæĞ1
+>kotlin:S1128$"Remove this unused import.(ÉÔäÇüÿÿÿÿ8Ù‹ƒæĞ1
+>kotlin:S1128%"Remove this unused import.(§Êëùùÿÿÿÿ8Ù‹ƒæĞ1
+9kotlin:S1128+"Remove this unused import.(®³ù‰8Ù‹ƒæĞ1
+wkotlin:S1192°"WDefine a constant instead of duplicating this literal "Contains IntialPostion" 4 times.(³ Ú…8¶ã³æĞ1

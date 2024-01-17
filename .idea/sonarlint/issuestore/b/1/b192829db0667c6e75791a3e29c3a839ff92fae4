@@ -1,5 +1,6 @@
 
-qkotlin:S117"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(×‘ºİ8‰çšßË1
-Mkotlin:S1481O".Remove this unused "plantList" local variable.(¶å¿Ô8çšßË1
-9kotlin:S1128"Remove this unused import.(ÒĞ’ö8çšßË1
-8kotlin:S1128"Remove this unused import.(¬¸ø8çšßË1
+qkotlin:S117#"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(×‘ºİ8ûé¾¡Ï1
+Mkotlin:S1481r".Remove this unused "plantList" local variable.(¶å¿Ô8‚ê¾¡Ï1
+9kotlin:S1128"Remove this unused import.(ÒĞ’ö8„ê¾¡Ï1
+8kotlin:S1128"Remove this unused import.(¬¸ø8„ê¾¡Ï1
+vkotlin:S3776"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(´­Ÿğşÿÿÿÿ8†ê¾¡Ï1

@@ -20,6 +20,9 @@ val virtual_plant_background6 = Color(0xFFF7F1E2)
 val virtual_plant_background8 = Color(0xFFED6B58)
 val virtual_plant_background7 = Color(0xFF639F64)
 val virtual_plant_background71 = Color(0xFF4E774F)
+val virtual_plant_backgroundLifeLine = Color(0xFFEAFEBE)
+val virtual_plant_backgroundWater = Color(0xFF45B4FE)
+
 val virtual_plant_background72 = Color(0xD5819F64)
 val virtual_plant_backgroundBlackShade= Color(0xFF29302C)
 

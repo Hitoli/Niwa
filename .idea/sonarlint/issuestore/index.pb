@@ -240,3 +240,17 @@ Q.idea/sonarlint/securityhotspotstore/5/1/51d9ae61034cc0ce2b238ba447f2a5cf9176ef
 Q.idea/sonarlint/securityhotspotstore/8/d/8d269d8e45e48ced469911b7acac093f85ef36d3,e\3\e3b32554ac88a745e44ba642bd4fdc1a9b698c00
 ¬
 |app/src/main/java/com/example/virtual_plant_pet/Presentation/screen/HomeScreen/FightSequenceScreens/fight_screen_sequence.kt,4\5\45151700736d371b0bae7ad093eb5a8ea2e45aae
+§
+wapp/src/main/java/com/example/virtual_plant_pet/Presentation/screen/HomeScreen/FightSequenceScreens/fight_screen_seq.kt,7\a\7a35d3fac82691cd701d75f56ff05169386cc40e
+¤
+tapp/src/main/java/com/example/virtual_plant_pet/Presentation/screen/HomeScreen/StealSequenceScreens/result_screen.kt,2\2\22717a64a21b5e3c5d7859021fc5b6b97bfb2d03
+¡
+qapp/src/main/java/com/example/virtual_plant_pet/Presentation/screen/OnBoardingScreen/choose_your_avatar_screen.kt,6\8\68e6b72030a26e6839be23ac7034f85cf3ccdcb5
+¡
+qapp/src/main/java/com/example/virtual_plant_pet/Presentation/screen/HomeScreen/FightSequenceScreens/TestScreen.kt,b\a\ba3feea315b4e1933bdbef81934dbdc332b7eeca
+š
+japp/src/main/java/com/example/virtual_plant_pet/Presentation/screen/HomeScreen/FightSequenceScreens/com.kt,e\b\eb4209ba47afcd4b482528ddc89da9bf827e0084
+”
+dapp/src/main/java/com/example/virtual_plant_pet/Presentation/screen/HomeScreen/HomeUtils/CardItem.kt,9\3\93d22585407a247e6161bde64e5fe47590638762
+‹
+[app/src/main/java/com/example/virtual_plant_pet/Presentation/screen/widgets/DraggleCards.kt,2\a\2aa43386d1335710c6cd09468edab3d31db9ea16

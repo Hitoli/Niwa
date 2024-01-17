@@ -391,6 +391,7 @@ fun BattleScreen(
                         }
 
 
+
                     }
                     if (isOnFightPressed) {
                         Image(
