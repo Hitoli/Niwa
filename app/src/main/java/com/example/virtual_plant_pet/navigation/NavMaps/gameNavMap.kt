@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.solus.navigation.navUtils.navScreens
 import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.FightSequenceScreens.FightScreen
+import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.FightSequenceScreens.FightScreenSeq
 import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.OnBoardingForFightScreen
 import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.StartFightScreen
 import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.StealSequenceScreens.ResultScreen
@@ -71,6 +72,9 @@ fun NavGraphBuilder.gameNavMap(navHostController: NavController, pad: PaddingVal
             var onUsedAmountPlant2 by remember {
                 mutableStateOf(0)
             }
+            var onResourceAmount by remember {
+                mutableStateOf(0)
+            }
 
     if (onUsedAmountPlant1 >= onTotalAmountPlant1) {
         isOnVisible = true
@@ -78,25 +82,38 @@ fun NavGraphBuilder.gameNavMap(navHostController: NavController, pad: PaddingVal
             if (onUsedAmountPlant2 >= onTotalAmountPlant2) {
                 isOnVisible = true
             }
-            FightScreen(isPad = pad, onGameResult = {
+            FightScreenSeq(isPad = pad, onGameResult = {
                getAppNavMap()
             }, onFight = {
                     onFightPressed = it
-                },
-                onAttack = {
-                    AttackingPlant = it
                 },
                 onUsedAmountPlant1 = {
                     onUsedAmountPlant1 += it
                 },
                 isOnFightPressed = onFightPressed,
-                isOnAttackingPlant = AttackingPlant,
-                isOnVisible = isOnVisible,
                 totalHealthAmountPlant1 = onTotalAmountPlant1,
-                usedHealthAmountPlant1 = onUsedAmountPlant1,
-                onVisible = {
-                    isOnVisible = it
-                }, onUsedAmountPlant2 = {}, usedHealthAmountPlant2 =onUsedAmountPlant2 , totalHealthAmountPlant2 =onTotalAmountPlant2)
+                usedHealthAmountPlant1 = onUsedAmountPlant1, onUsedAmountPlant2 = {}, usedHealthAmountPlant2 =onUsedAmountPlant2 , totalHealthAmountPlant2 =onTotalAmountPlant2, resourceTotalAmount = onResourceAmount, resourceAmount = onTotalAmountPlant1, onresourceAmount = {
+                    onResourceAmount+=it
+                })
+//            FightScreen(isPad = pad, onGameResult = {
+//               getAppNavMap()
+//            }, onFight = {
+//                    onFightPressed = it
+//                },
+//                onAttack = {
+//                    AttackingPlant = it
+//                },
+//                onUsedAmountPlant1 = {
+//                    onUsedAmountPlant1 += it
+//                },
+//                isOnFightPressed = onFightPressed,
+//                isOnAttackingPlant = AttackingPlant,
+//                isOnVisible = isOnVisible,
+//                totalHealthAmountPlant1 = onTotalAmountPlant1,
+//                usedHealthAmountPlant1 = onUsedAmountPlant1,
+//                onVisible = {
+//                    isOnVisible = it
+//                }, onUsedAmountPlant2 = {}, usedHealthAmountPlant2 =onUsedAmountPlant2 , totalHealthAmountPlant2 =onTotalAmountPlant2)
         }
 //        composable(navScreens.appNavScreen.route) {
 //            appNavMap()

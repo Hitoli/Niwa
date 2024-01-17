@@ -1,23 +1,17 @@
 
-Pkotlin:S1172£"2Use "_" instead of these unused lambda parameters.(ˆ†ô…þÿÿÿÿ
-Skotlin:S1172q"6Use "_" instead of this unused lambda parameter "img".(ä–‹Æøÿÿÿÿ
-okotlin:S117A"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ÝÊ·œÿÿÿÿÿ
-Tkotlin:S14817"7Remove this unused "infiniteTransition" local variable.(øÿŽ÷ûÿÿÿÿ
-7kotlin:S1128	"Remove this unused import.(•Éì‰üÿÿÿÿ
-7kotlin:S1128"Remove this unused import.(µ¢«Ïúÿÿÿÿ
-7kotlin:S1128"Remove this unused import.(û¢ËÓùÿÿÿÿ
-7kotlin:S1128"Remove this unused import.(£žØØùÿÿÿÿ
-7kotlin:S1128"Remove this unused import.(¤­‹Žüÿÿÿÿ
-7kotlin:S1128"Remove this unused import.(ÅÍüÿÿÿÿ
-7kotlin:S1128"Remove this unused import.(¶ý¨Òúÿÿÿÿ
-7kotlin:S1128"Remove this unused import.(½…Ò¦ýÿÿÿÿ
-2kotlin:S1128"Remove this unused import.(”ªˆ­
-2kotlin:S1128"Remove this unused import.(©ÎÖÅ
-7kotlin:S1128#"Remove this unused import.(ÉÁ¸þÿÿÿÿ
-2kotlin:S1128$"Remove this unused import.(ÍýÝô
-7kotlin:S1128'"Remove this unused import.(À†ŠÔùÿÿÿÿ
-7kotlin:S1128("Remove this unused import.(Â­¢Âùÿÿÿÿ
-2kotlin:S1128)"Remove this unused import.(ôÄ¼ü
-7kotlin:S1128-"Remove this unused import.(çŠÀ§úÿÿÿÿ
-7kotlin:S1128."Remove this unused import.(‚ñÉÿÿÿÿÿ
-7kotlin:S11282"Remove this unused import.(Ó¸Ñÿÿÿÿÿ
+Vkotlin:S1172M"2Remove this unused function parameter "onCapture".(á¢Çøÿÿÿÿ8Øš±“Ï1
+Rkotlin:S1172î"2Remove this unused function parameter "onVisible".(éëßó8—çê“Ï1
+Rkotlin:S1172â"2Use "_" instead of these unused lambda parameters.(¸­¼°8Ùš±“Ï1
+Zkotlin:S1481_";Remove this unused "healthPercentagePlant2" local variable.(ÔÁ‰Ž8Ó”º“Ï1
+9kotlin:S1128"Remove this unused import.(‘Öñå8åš±“Ï1
+9kotlin:S1128"Remove this unused import.(¤íú÷8åš±“Ï1
+9kotlin:S1128"Remove this unused import.(¨¾ÈÂ8åš±“Ï1
+9kotlin:S1128"Remove this unused import.(Ûœƒò8åš±“Ï1
+>kotlin:S1128"Remove this unused import.(ê ýõûÿÿÿÿ8åš±“Ï1
+9kotlin:S1128'"Remove this unused import.(”ªˆ­8åš±“Ï1
+>kotlin:S1128)"Remove this unused import.(õ»ýÂÿÿÿÿÿ8åš±“Ï1
+9kotlin:S1128,"Remove this unused import.(©ÎÖÅ8åš±“Ï1
+9kotlin:S1128="Remove this unused import.(®³ù‰8æš±“Ï1
+>kotlin:S1128I"Remove this unused import.(Ó¸Ñÿÿÿÿÿ8æš±“Ï1
+>kotlin:S1128J"Remove this unused import.(ˆ´Ïûùÿÿÿÿ8æš±“Ï1
+rkotlin:S1192‘"RDefine a constant instead of duplicating this literal "image description" 7 times.(¶‘•ç8çš±“Ï1

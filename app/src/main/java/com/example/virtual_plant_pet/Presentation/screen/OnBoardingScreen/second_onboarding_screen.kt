@@ -22,10 +22,18 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ArrowForwardIos
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -62,6 +70,7 @@ import com.example.virtual_plant_pet.ui.theme.virtual_plant_background8
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_backgroundBlackShade
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_sheetcolor
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun SecondOnBoardinScreen(
@@ -77,6 +86,8 @@ fun SecondOnBoardinScreen(
     getVisibility:(Boolean)->Unit,
     buttonVisibility:Boolean,
     getbuttonVisibility:(Boolean)->Unit,
+    buttonVisibilityNext:Boolean,
+    getbuttonVisibilityNext:(Boolean)->Unit,
     counter:Int,
     getCounter:(Int)->Unit
 ) {
@@ -88,48 +99,10 @@ fun SecondOnBoardinScreen(
         label = "water",
         animationSpec = tween(durationMillis = 1000)
     )
-
-    LaunchedEffect(key1 = Unit) {
-        delay(2500)
-        getVisibility(false)
-        delay(500)
-        getCounter(1)
-        getUsedLoadingPlant(50)
-        delay(1000)
-        getVisibility(true)
-        delay(2500)
-        getVisibility(false)
-        delay(500)
-        getCounter(1)
-        getUsedLoadingPlant(50)
-        delay(1000)
-        getVisibility(true)
-        delay(2500)
-        getVisibility(false)
-        delay(500)
-        getCounter(1)
-        getUsedLoadingPlant(50)
-        delay(1000)
-        getVisibility(true)
-        delay(2500)
-        getVisibility(false)
-        delay(500)
-        getCounter(1)
-        getUsedLoadingPlant(50)
-        delay(1000)
-        getVisibility(true)
-        delay(2500)
-        getVisibility(false)
-        delay(500)
-        getCounter(1)
-        getUsedLoadingPlant(50)
-        delay(1000)
-        getVisibility(true)
-        getUsedLoadingPlant(50)
-       getbuttonVisibility(true)
+    val coroutineScope = rememberCoroutineScope()
 
 
-    }
+
     Box(
         modifier = modifier
             .background(
@@ -261,6 +234,45 @@ fun SecondOnBoardinScreen(
 
         Spacer(modifier = Modifier.size(24.dp))
         AnimatedVisibility(
+            visible = buttonVisibilityNext,
+            enter = fadeIn(
+                animationSpec = tween(
+                    durationMillis = 500,
+                    easing = LinearEasing
+                )
+            ),
+            exit = fadeOut(
+                animationSpec = tween(
+                    durationMillis = 500,
+                    easing = LinearEasing
+                )
+            ), modifier = Modifier
+                .padding(16.dp)
+                .align(Alignment.BottomCenter)
+        ) {
+            Button(
+                onClick = {
+                    getVisibility(true)
+                    getCounter(1)
+                    getUsedLoadingPlant(50)
+                          coroutineScope.launch {
+                              delay(250)
+                              getVisibility(false)
+                              delay(250)
+                              getVisibility(true)
+                          }
+                          },
+                modifier = Modifier
+                    .heightIn(80.dp)
+                    .widthIn(80.dp),
+                colors = ButtonDefaults.buttonColors(virtual_plant_backgroundBlackShade),
+                shape = CircleShape
+            ) {
+                Icon(imageVector = Icons.Outlined.ArrowForwardIos, contentDescription = "", tint = Color.White)
+            }
+
+        }
+        AnimatedVisibility(
             visible = buttonVisibility,
             enter = fadeIn(
                 animationSpec = tween(
@@ -313,5 +325,7 @@ fun PreviewSecondOnBoardinScreen() {
         LoadingAmountPlant = 100,
         videoTutorialIntro2 = videoTutorialIntro,
         videoTutorialIntro = videoTutorialIntro2,
-        getUsedLoadingPlant = {}, buttonVisibility = true, getVisibility = {}, getbuttonVisibility = {}, visibility = true, counter = 0, getCounter = {})
+        getUsedLoadingPlant = {}, buttonVisibility = false, getVisibility = {}, getbuttonVisibility = {}, visibility = true, counter = 0, getCounter = {}, buttonVisibilityNext = true, getbuttonVisibilityNext = {
+
+        })
 }

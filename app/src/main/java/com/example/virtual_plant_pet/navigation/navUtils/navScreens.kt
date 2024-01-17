@@ -20,5 +20,7 @@ sealed class navScreens(val route:String){
     object ResultScreen: navScreens( "ResultScreen_Solus")
     object StartFightScreen: navScreens( "StartFightScreen_Solus")
     object OnBoardingFightScreen: navScreens( "OnBoardingFightScreen_Solus")
+    object ChooseAvatarScreen: navScreens( "ChooseAvatarScreen_Solus")
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.virtual_plant_pet.navigation.NavMaps
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -12,6 +13,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.solus.navigation.navUtils.navScreens
 import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.HomeUtils.shopItems
+import com.example.virtual_plant_pet.Presentation.screen.OnBoardingScreen.ChooseYourAvatarScreen
 import com.example.virtual_plant_pet.Presentation.screen.OnBoardingScreen.FirstOnBoardingScreen
 import com.example.virtual_plant_pet.Presentation.screen.OnBoardingScreen.SecondOnBoardinScreen
 import com.example.virtual_plant_pet.Presentation.screen.OnBoardingScreen.YourNameScreen
@@ -23,6 +25,9 @@ import org.koin.androidx.compose.koinViewModel
 fun navScreen(navaHostController: NavHostController, viewModel: AuthViewModel = koinViewModel()) {
     var userName by remember {
         mutableStateOf("")
+    }
+    var avatarSelected by remember{
+        mutableStateOf(0)
     }
     var usedLoadingAmountPlant by remember {
         mutableStateOf(0)
@@ -36,10 +41,17 @@ fun navScreen(navaHostController: NavHostController, viewModel: AuthViewModel = 
     var buttonVisibility by remember {
         mutableStateOf(false)
     }
+    var buttonVisibilityNext by remember {
+        mutableStateOf(true)
+    }
     var counter by remember {
         mutableStateOf(0)
     }
     var empty by remember{
+        mutableStateOf(false)
+    }
+
+    var emptyAvatar by remember{
         mutableStateOf(false)
     }
     var dismiss by remember {
@@ -48,6 +60,29 @@ fun navScreen(navaHostController: NavHostController, viewModel: AuthViewModel = 
     var questDismiss by remember {
         mutableStateOf(false)
     }
+    var isSelected by remember{
+        mutableStateOf(false)
+    }
+    var isSelected1 by remember{
+        mutableStateOf(false)
+    }
+
+    var isSelected2 by remember{
+        mutableStateOf(false)
+    }
+
+    var isSelected3 by remember{
+        mutableStateOf(false)
+    }
+
+    var isSelected4 by remember{
+        mutableStateOf(false)
+    }
+
+    var isSelected5 by remember{
+        mutableStateOf(false)
+    }
+
 
 
 
@@ -137,7 +172,7 @@ fun navScreen(navaHostController: NavHostController, viewModel: AuthViewModel = 
 
             YourNameScreen(onNavigate = {
                 if (userName.isNotEmpty()){
-                    navaHostController.navigate(navScreens.OnBoardingScreen2.route) {
+                    navaHostController.navigate(navScreens.ChooseAvatarScreen.route) {
                         popUpTo(navScreens.UserNameScreen.route) {
                             inclusive = true
                         }
@@ -152,7 +187,37 @@ fun navScreen(navaHostController: NavHostController, viewModel: AuthViewModel = 
                 userName = it
             }, empty = empty)
         }
+        composable(navScreens.ChooseAvatarScreen.route){
+            ChooseYourAvatarScreen(onNavigate = {
+                                                if (avatarSelected!=0){
+                                                    navaHostController.navigate(navScreens.OnBoardingScreen2.route) {
+                                                        popUpTo(navScreens.ChooseAvatarScreen.route) {
+                                                            inclusive = true
+                                                        }
+                                                    }
+                                                    emptyAvatar = false
+                                                }else{
+                                                    emptyAvatar = true
+                                                }
+            }, getAvatar ={
+                          avatarSelected = it
+            } , empty = emptyAvatar, isSelected = isSelected, isSelected1 = isSelected1, isSelected2 = isSelected2, isSelected3 = isSelected3, isSelected4 = isSelected4, isSelected5 = isSelected5, getIsSelected = {
+                isSelected = it
+            }, getIsSelected1 = {
+                isSelected1 = it
+            }, getIsSelected2 = {
+                isSelected2 = it
+            }, getIsSelected3 = {
+                isSelected3 = it
+            }, getIsSelected4 = {
+                isSelected4 = it
+            }, getIsSelected5 = {
+                isSelected5 = it
+            })
+
+        }
         composable(navScreens.OnBoardingScreen2.route) {
+
             SecondOnBoardinScreen(
                 onNavigatie = {
 
@@ -168,14 +233,30 @@ fun navScreen(navaHostController: NavHostController, viewModel: AuthViewModel = 
                 LoadingAmountPlant = LoadingAmountPlant,
                 videoTutorialIntro = videoTutorialIntro,
                 videoTutorialIntro2 = videoTutorialIntro2, getUsedLoadingPlant = {
-                    usedLoadingAmountPlant += it
+                    if(usedLoadingAmountPlant>=LoadingAmountPlant){
+                        buttonVisibility = true
+                        buttonVisibilityNext = false
+
+                    }else{
+                        usedLoadingAmountPlant += it
+                    }
                 }, getbuttonVisibility = {
                     buttonVisibility = it
                 }, buttonVisibility = buttonVisibility, getVisibility = {
                     visibility = it
                 }, visibility = visibility, counter = counter, getCounter = {
-                    counter += it
-                }
+                    Log.e("Counter",counter.toString())
+                    Log.e("Counter",videoTutorialIntro2.size.toString())
+                    if(counter>=videoTutorialIntro2.size-1){
+                        buttonVisibility = true
+                        buttonVisibilityNext = false
+                    }else{
+                        counter += it
+                    }
+
+                }, getbuttonVisibilityNext = {
+                                             buttonVisibilityNext = it
+                }, buttonVisibilityNext = buttonVisibilityNext
             )
         }
 

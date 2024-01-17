@@ -1,0 +1,27 @@
+
+Fkotlin:S1172`"(Remove these unused function parameters.(²Ğ¸y8¾¤ÔÄÑ1
+Qkotlin:S1172¨"2Remove this unused function parameter "onVisible".(©Æ¶!8¿¤ÔÄÑ1
+=kotlin:S125š"Remove this commented out code.(è»»_8É¤ÔÄÑ1
+vkotlin:S117~"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(•±Ùôùÿÿÿÿ8Ñ¤ÔÄÑ1
+rkotlin:S117"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ä‡«8Ñ¤ÔÄÑ1
+kkotlin:S107_"HThis function has 14 parameters, which is greater than the 7 authorized.(åíÍôıÿÿÿÿ8Ş¤ÔÄÑ1
+Skotlin:S1481­".Remove this unused "dragging2" local variable.(åªşÿÿÿÿ8í¤ÔÄÑ1
+Pkotlin:S1481r",Remove this unused "density" local variable.(ÇÌ²Úùÿÿÿÿ8í¤ÔÄÑ1
+>kotlin:S1128%"Remove this unused import.(é£¢ïúÿÿÿÿ8÷¤ÔÄÑ1
+9kotlin:S1128,"Remove this unused import.(šÜ•„8÷¤ÔÄÑ1
+>kotlin:S11284"Remove this unused import.(èµ°úÿÿÿÿ8÷¤ÔÄÑ1
+>kotlin:S11285"Remove this unused import.(¼É¶Àşÿÿÿÿ8÷¤ÔÄÑ1
+9kotlin:S11289"Remove this unused import.(æ›†Î8÷¤ÔÄÑ1
+>kotlin:S1128<"Remove this unused import.(œ¡©üÿÿÿÿ8÷¤ÔÄÑ1
+>kotlin:S1128>"Remove this unused import.(ÉÔäÇüÿÿÿÿ8÷¤ÔÄÑ1
+>kotlin:S1128?"Remove this unused import.(§Êëùùÿÿÿÿ8÷¤ÔÄÑ1
+>kotlin:S1128F"Remove this unused import.(û¬ã‚úÿÿÿÿ8÷¤ÔÄÑ1
+>kotlin:S1128K"Remove this unused import.(ÑØ…üúÿÿÿÿ8÷¤ÔÄÑ1
+9kotlin:S1128Z"Remove this unused import.(ø’“8÷¤ÔÄÑ1
+>kotlin:S1128["Remove this unused import.(âãñ“ùÿÿÿÿ8ø¤ÔÄÑ1
+vkotlin:S1192›"VDefine a constant instead of duplicating this literal "Animation on offset X" 3 times.(á“İÄ8ú¤ÔÄÑ1
+{kotlin:S1192Ÿ"VDefine a constant instead of duplicating this literal "Animation on offset Y" 3 times.(ò¡¸ıÿÿÿÿ8ú¤ÔÄÑ1
+rkotlin:S1192ñ"RDefine a constant instead of duplicating this literal "image description" 3 times.(¶‘•ç8ú¤ÔÄÑ1
+wkotlin:S1192€"WDefine a constant instead of duplicating this literal "Contains IntialPostion" 6 times.(³ Ú…8û¤ÔÄÑ1
+vkotlin:S1192‚"QDefine a constant instead of duplicating this literal "Contains offsetx" 3 times.(ŸÑ®™ûÿÿÿÿ8û¤ÔÄÑ1
+vkotlin:S1192ƒ"QDefine a constant instead of duplicating this literal "Contains offsety" 3 times.(ô•¢Œıÿÿÿÿ8û¤ÔÄÑ1

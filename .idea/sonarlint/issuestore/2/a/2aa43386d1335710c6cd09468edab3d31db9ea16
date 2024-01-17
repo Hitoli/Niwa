@@ -1,0 +1,8 @@
+
+Lkotlin:S1172"(Remove these unused function parameters.(÷Ôúêøÿÿÿÿ8ù¾©ğĞ1
+]kotlin:S1172"9Use "_" instead of this unused lambda parameter "change".(ˆ«È’ıÿÿÿÿ8º®¬ğĞ1
+qkotlin:S117"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(÷Ôúêøÿÿÿÿ8¯‰ªğĞ1
+qkotlin:S117"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(÷Ôúêøÿÿÿÿ8¿ŸªğĞ1
+kkotlin:S107"HThis function has 13 parameters, which is greater than the 7 authorized.(÷Ôúêøÿÿÿÿ8û¾©ğĞ1
+>kotlin:S1128"Remove this unused import.(ÊÒÅ­ùÿÿÿÿ8ãà«ğĞ1
+>kotlin:S1128"Remove this unused import.(¸çÁßûÿÿÿÿ8ı¾©ğĞ1
