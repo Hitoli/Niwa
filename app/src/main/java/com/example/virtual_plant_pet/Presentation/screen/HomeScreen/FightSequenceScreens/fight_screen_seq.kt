@@ -40,6 +40,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -88,8 +89,10 @@ import com.example.virtual_plant_pet.ui.theme.virtual_plant_backgroundLifeLine
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_backgroundWater
 import com.example.virtual_plant_pet.ui.theme.virtual_plant_sheetcolor
 import com.google.ar.sceneform.rendering.ViewRenderable.VerticalAlignment
+import kotlinx.coroutines.delay
 import org.koin.core.parameter.parameterArrayOf
 import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun FightScreenSeq(
@@ -100,7 +103,7 @@ fun FightScreenSeq(
     onUsedAmountPlant2: (Int) -> Unit,
     onresourceAmount: (Int) -> Unit,
     onGameResult: () -> Unit,
-    listOfCard:List<CardItem>,
+    listOfCard: List<CardItem>,
     usedHealthAmountPlant1: Int,
     totalHealthAmountPlant1: Int,
     usedHealthAmountPlant2: Int,
@@ -136,19 +139,33 @@ fun FightScreenSeq(
         mutableStateOf(127.dp)
 
     }
+    var sizeWidth2 by remember {
+        mutableStateOf(87.dp)
+    }
+    var sizeHeight2 by remember {
+        mutableStateOf(127.dp)
+
+    }
+    var sizeWidth3 by remember {
+        mutableStateOf(87.dp)
+    }
+    var sizeHeight3 by remember {
+        mutableStateOf(127.dp)
+
+    }
 
 
     var offsetX3 by remember {
-        mutableStateOf((screenWidth.value+280).toInt())
+        mutableStateOf((screenWidth.value + 280).toInt())
     }
     var offsetY3 by remember {
-        mutableStateOf((screenHeight.value*2-150).toInt())
+        mutableStateOf((screenHeight.value * 2 - 150).toInt())
     }
     var offsetx by remember {
-        mutableStateOf((screenWidth.value+30).toInt())
+        mutableStateOf((screenWidth.value + 30).toInt())
     }
     var offsety by remember {
-        mutableStateOf((screenHeight.value*2-150).toInt())
+        mutableStateOf((screenHeight.value * 2 - 150).toInt())
     }
     var offsetXdrag3 = animateIntAsState(
         targetValue = offsetX3, animationSpec = animespec,
@@ -168,8 +185,8 @@ fun FightScreenSeq(
         targetValue = offsety, animationSpec = animespec,
         label = "Animation on offset Y"
     )
-    var offsetX2 by remember { mutableStateOf((screenWidth.value-220).toInt()) }
-    var offsetY2 by remember { mutableStateOf((screenHeight.value*2-150).toInt()) }
+    var offsetX2 by remember { mutableStateOf((screenWidth.value - 220).toInt()) }
+    var offsetY2 by remember { mutableStateOf((screenHeight.value * 2 - 150).toInt()) }
     var dragging2 by remember {
         mutableStateOf(false)
     }
@@ -220,8 +237,8 @@ fun FightScreenSeq(
                     layoutCoordinates
                         .positionInWindow()
                         .apply {
-                            InitialPositionx = this.x.roundToInt()
-                            InitialPositiony = this.y.roundToInt()
+                            InitialPositionx = this.x.roundToInt() + 15
+                            InitialPositiony = this.y.roundToInt() - 30
 
                         }
                 }
@@ -229,7 +246,8 @@ fun FightScreenSeq(
         Box(
             modifier = Modifier
 
-                .width(310.dp).offset(x =screenWidth/8,y=screenHeight*3/4)
+                .width(310.dp)
+                .offset(x = screenWidth / 8, y = screenHeight * 3 / 4)
                 .height(100.dp)
                 .background(
                     color = Color(0x4D000000),
@@ -237,20 +255,24 @@ fun FightScreenSeq(
                 )
         )
         Image(
-            painter = painterResource(id = R.drawable.niwaplayingcard),
+            painter = painterResource(id = listOfCard[0].cardImage),
             contentDescription = "image description",
             contentScale = ContentScale.FillBounds, modifier = Modifier
-                .width(sizeWidth1)
-                .height(sizeHeight1)
-                .offset { IntOffset(offsetXdrag2.value, offsetYdrag2.value) } .pointerInput(Unit) {
+                .width(sizeWidth2)
+                .height(sizeHeight2)
+                .offset { IntOffset(offsetXdrag2.value, offsetYdrag2.value) }
+                .pointerInput(Unit) {
                     detectDragGestures(onDrag = { change, dragAmount ->
-                        sizeWidth1 = 127.dp
-                        sizeHeight1 = 187.dp
+
+                        sizeWidth2 = 127.dp
+                        sizeHeight2 = 187.dp
                         dragging = change.pressed
                         Log.e("dragginf", change.pressed.toString())
                         offsetX2 += dragAmount.x.roundToInt()
                         offsetY2 += dragAmount.y.roundToInt()
                     }, onDragEnd = {
+                        onresourceAmount(listOfCard[0].cardValue)
+                        onUsedAmountPlant1(listOfCard[0].attackPower)
                         offsetX2 = InitialPositionx
                         offsetY2 = InitialPositiony
                         Log.e("Contains IntialPostion", InitialPositionx.toString())
@@ -261,12 +283,13 @@ fun FightScreenSeq(
                 }
         )
         Image(
-            painter = painterResource(id = R.drawable.niwaplayingcard),
+            painter = painterResource(id = listOfCard[1].cardImage),
             contentDescription = "image description",
             contentScale = ContentScale.FillBounds, modifier = Modifier
                 .width(sizeWidth1)
                 .height(sizeHeight1)
-                .offset { IntOffset(offsetXdrag.value, offsetYdrag.value) } .pointerInput(Unit) {
+                .offset { IntOffset(offsetXdrag.value, offsetYdrag.value) }
+                .pointerInput(Unit) {
                     detectDragGestures(onDrag = { change, dragAmount ->
                         sizeWidth1 = 127.dp
                         sizeHeight1 = 187.dp
@@ -286,15 +309,16 @@ fun FightScreenSeq(
                 }
         )
         Image(
-            painter = painterResource(id = R.drawable.niwaplayingcard),
+            painter = painterResource(id = listOfCard[2].cardImage),
             contentDescription = "image description",
             contentScale = ContentScale.FillBounds, modifier = Modifier
-                .width(sizeWidth1)
-                .height(sizeHeight1)
-                .offset { IntOffset(offsetXdrag3.value, offsetYdrag3.value) } .pointerInput(Unit) {
+                .width(sizeWidth3)
+                .height(sizeHeight3)
+                .offset { IntOffset(offsetXdrag3.value, offsetYdrag3.value) }
+                .pointerInput(Unit) {
                     detectDragGestures(onDrag = { change, dragAmount ->
-                        sizeWidth1 = 127.dp
-                        sizeHeight1 = 187.dp
+                        sizeWidth3 = 127.dp
+                        sizeHeight3 = 187.dp
                         dragging = change.pressed
                         Log.e("dragginf", change.pressed.toString())
                         offsetX3 += dragAmount.x.roundToInt()
@@ -643,14 +667,14 @@ fun FightScreenSeq(
                         .background(Color(0x4D000000))
                         .padding(16.dp)
                 ) {
-                    if(resourceAmount>=resourceTotalAmount){
+                    if (resourceAmount >= resourceTotalAmount) {
                         Icon(
                             painter = painterResource(R.drawable.water),
                             contentDescription = "water",
                             modifier = Modifier.size(30.dp),
                             tint = Color.White
                         )
-                    }else{
+                    } else {
                         Text(
                             text = resourceAmount.toString(),
                             color = Color.White,
@@ -1042,22 +1066,39 @@ fun VirtualPlantScreenResourcesIndicator(modifier: Modifier, water: Int, soil: I
 @Preview(showBackground = true)
 @Composable
 fun PreviewFightScreenSeq() {
-    var resourceAmount by remember{
-        mutableStateOf(50)
+    var timerTicks by remember {
+        mutableStateOf(0)
     }
-    var totalResourceAmount by remember{
+    var resourceAmount by remember {
+        mutableStateOf(0)
+    }
+    var totalResourceAmount by remember {
         mutableStateOf(120)
     }
+    var onTotalAmountPlant1 by remember {
+        mutableStateOf(120)
+    }
+    var onUsedAmountPlant1 by remember {
+        mutableStateOf(0)
+    }
+    var onTotalAmountPlant2 by remember {
+        mutableStateOf(120)
+    }
+    var onUsedAmountPlant2 by remember {
+        mutableStateOf(0)
+    }
     var cardList = listOf<CardItem>(
-        CardItem(cardImage = R.drawable.playingcardniwa1,5),
-        CardItem(cardImage = R.drawable.playingcardniwa1,5),
-        CardItem(cardImage = R.drawable.playingcardniwa1,5),
-        CardItem(cardImage = R.drawable.playingcardniwa1,5),
-        CardItem(cardImage = R.drawable.playingcardniwa1,5),
-        CardItem(cardImage = R.drawable.playingcardniwa1,5),
-        CardItem(cardImage = R.drawable.playingcardniwa1,5),
-
+        CardItem(cardImage = R.drawable.niwaplayingcard, 5, 10),
+        CardItem(cardImage = R.drawable.niwaplayingcard, 5, 10),
+        CardItem(cardImage = R.drawable.niwaplayingcard, 5, 10),
     )
+    LaunchedEffect(key1 = Unit) {
+        while (resourceAmount <= totalResourceAmount) {
+            delay(1.5.seconds)
+            timerTicks++;
+            resourceAmount += 5;
+        }
+    }
     FightScreenSeq(
         isOnFightPressed = true,
         isPad = PaddingValues(16.dp),
@@ -1065,15 +1106,17 @@ fun PreviewFightScreenSeq() {
 
         },
         onUsedAmountPlant2 = {},
-        onUsedAmountPlant1 = {},
+        onUsedAmountPlant1 = {
+                             onUsedAmountPlant1 = it
+        },
         onGameResult = {},
-        usedHealthAmountPlant2 = 10,
-        usedHealthAmountPlant1 = 10,
-        totalHealthAmountPlant1 = 10,
-        totalHealthAmountPlant2 = 10,
+        usedHealthAmountPlant2 = onUsedAmountPlant2,
+        usedHealthAmountPlant1 = onUsedAmountPlant1,
+        totalHealthAmountPlant1 = onTotalAmountPlant1,
+        totalHealthAmountPlant2 = onTotalAmountPlant2,
         resourceAmount = resourceAmount,
         resourceTotalAmount = totalResourceAmount, onresourceAmount = {
-
-        }, listOfCard =cardList
+            resourceAmount -= it
+        }, listOfCard = cardList
     )
 }

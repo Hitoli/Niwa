@@ -38,8 +38,8 @@ fun DraggableCards(cardImage:Int,cardValue:Int,sizeWidth:Dp,sizeHeight:Dp,offset
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewDraggableCards() {
-    DraggableCards()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewDraggableCards() {
+//    DraggableCards()
+//}
