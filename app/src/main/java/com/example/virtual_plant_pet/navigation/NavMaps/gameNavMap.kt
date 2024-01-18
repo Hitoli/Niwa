@@ -1,6 +1,7 @@
 package com.example.virtual_plant_pet.navigation.NavMaps
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -12,10 +13,14 @@ import androidx.navigation.navigation
 import com.example.solus.navigation.navUtils.navScreens
 import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.FightSequenceScreens.FightScreen
 import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.FightSequenceScreens.FightScreenSeq
+import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.HomeUtils.CardItem
 import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.OnBoardingForFightScreen
 import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.StartFightScreen
 import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.StealSequenceScreens.ResultScreen
 import com.example.virtual_plant_pet.Presentation.screen.HomeScreen.StealSequenceScreens.StealScreen
+import com.example.virtual_plant_pet.R
+import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.seconds
 
 
 fun NavGraphBuilder.gameNavMap(navHostController: NavController, pad: PaddingValues,getAppNavMap:()->Unit) {
@@ -51,6 +56,13 @@ fun NavGraphBuilder.gameNavMap(navHostController: NavController, pad: PaddingVal
             })
         }
         composable(navScreens.FightScreen.route) {
+
+            var timerTicks by remember{
+                mutableStateOf(0)
+            }
+
+
+
             var isOnVisible by remember {
                 mutableStateOf(false)
             }
@@ -75,6 +87,26 @@ fun NavGraphBuilder.gameNavMap(navHostController: NavController, pad: PaddingVal
             var onResourceAmount by remember {
                 mutableStateOf(0)
             }
+            var onTotalResourceAmount by remember {
+                mutableStateOf(120)
+            }
+            var cardList = listOf<CardItem>(
+                CardItem(cardImage = R.drawable.playingcardniwa1,5, 10),
+                CardItem(cardImage = R.drawable.playingcardniwa1,5,10),
+                CardItem(cardImage = R.drawable.playingcardniwa1,5,10),
+                CardItem(cardImage = R.drawable.playingcardniwa1,5,10),
+                CardItem(cardImage = R.drawable.playingcardniwa1,5,10),
+                CardItem(cardImage = R.drawable.playingcardniwa1,5,10),
+                CardItem(cardImage = R.drawable.playingcardniwa1,5,10),
+
+                )
+            LaunchedEffect(key1 = Unit){
+                while (onResourceAmount<=onTotalResourceAmount){
+                    delay(1.seconds)
+                    timerTicks++;
+                    onResourceAmount+=30;
+                }
+            }
 
     if (onUsedAmountPlant1 >= onTotalAmountPlant1) {
         isOnVisible = true
@@ -92,9 +124,9 @@ fun NavGraphBuilder.gameNavMap(navHostController: NavController, pad: PaddingVal
                 },
                 isOnFightPressed = onFightPressed,
                 totalHealthAmountPlant1 = onTotalAmountPlant1,
-                usedHealthAmountPlant1 = onUsedAmountPlant1, onUsedAmountPlant2 = {}, usedHealthAmountPlant2 =onUsedAmountPlant2 , totalHealthAmountPlant2 =onTotalAmountPlant2, resourceTotalAmount = onResourceAmount, resourceAmount = onTotalAmountPlant1, onresourceAmount = {
+                usedHealthAmountPlant1 = onUsedAmountPlant1, onUsedAmountPlant2 = {}, usedHealthAmountPlant2 =onUsedAmountPlant2 , totalHealthAmountPlant2 =onTotalAmountPlant2, resourceTotalAmount =onTotalResourceAmount , resourceAmount = onResourceAmount, onresourceAmount = {
                     onResourceAmount+=it
-                })
+                }, listOfCard = cardList)
 //            FightScreen(isPad = pad, onGameResult = {
 //               getAppNavMap()
 //            }, onFight = {
