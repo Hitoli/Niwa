@@ -16,6 +16,7 @@ Key Features:
 - Card Theft: Take your strategy to the next level by stealing plant cards from opponents.
 
 ### Demonstration Video:
+https://twitter.com/i/status/1749094557550088265
 
 
 ## Plan from Design to release
