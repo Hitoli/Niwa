@@ -109,7 +109,12 @@ fun FightScreenSeq(
     usedHealthAmountPlant2: Int,
     totalHealthAmountPlant2: Int,
     resourceAmount: Int,
-    resourceTotalAmount: Int
+    resourceTotalAmount: Int,
+    onPlayer1:String,
+    onPlayer2:String,
+    onPlayer1Img:Int,
+    onPlayer2Img:Int
+
 ) {
     val config = LocalConfiguration.current
     val screenHeight = config.screenHeightDp.dp
@@ -125,7 +130,6 @@ fun FightScreenSeq(
         mutableStateOf(false)
     }
     val animespec = if (dragging) draganime else dropanime
-
     var InitialPositionx by remember {
         mutableStateOf(0)
     }
@@ -134,6 +138,12 @@ fun FightScreenSeq(
     }
     var sizeWidth1 by remember {
         mutableStateOf(87.dp)
+    }
+    var sizeWidth4 by remember{
+        mutableStateOf(127.dp)
+    }
+    var sizeHeight4 by remember{
+        mutableStateOf(187.dp)
     }
     var sizeHeight1 by remember {
         mutableStateOf(127.dp)
@@ -175,8 +185,6 @@ fun FightScreenSeq(
         targetValue = offsetY3, animationSpec = animespec,
         label = "Animation on offset Y"
     )
-
-
     var offsetXdrag = animateIntAsState(
         targetValue = offsetx, animationSpec = animespec,
         label = "Animation on offset X"
@@ -335,6 +343,34 @@ fun FightScreenSeq(
                 }
         )
 
+        Image(
+            painter = painterResource(id = R.drawable.niwaplayingcard),
+            contentDescription = "image description",
+            contentScale = ContentScale.FillBounds, modifier = Modifier
+                .width(sizeWidth4)
+                .height(sizeHeight4)
+                .offset { IntOffset(InitialPositionx - 2, InitialPositiony + 45) }
+//                .pointerInput(Unit) {
+//                    detectDragGestures(onDrag = { change, dragAmount ->
+//                        sizeWidth3 = 127.dp
+//                        sizeHeight3 = 187.dp
+//                        dragging = change.pressed
+//                        Log.e("dragginf", change.pressed.toString())
+//                        offsetX3 += dragAmount.x.roundToInt()
+//                        offsetY3 += dragAmount.y.roundToInt()
+//                    }, onDragEnd = {
+//                        offsetX3 = InitialPositionx
+//                        offsetY3 = InitialPositiony
+//                        Log.e("Contains IntialPostion", InitialPositionx.toString())
+//                        Log.e("Contains IntialPostion", InitialPositiony.toString())
+//                        Log.e("Contains offsetx", offsetX3.toString())
+//                        Log.e("Contains offsety", offsetY3.toString())
+//
+//                    })
+//                }
+        )
+
+
 
 
 
@@ -443,7 +479,7 @@ fun FightScreenSeq(
 
                         }
                         Text(
-                            text = "Mystique",
+                            text = onPlayer1,
                             color = Color.Black,
                             modifier = Modifier
                                 .padding(top = 6.dp)
@@ -454,7 +490,7 @@ fun FightScreenSeq(
                     }
                     Spacer(modifier = Modifier.size(10.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.farmers),
+                        painter = painterResource(id = onPlayer1Img),
                         contentDescription = "player",
                         contentScale = ContentScale.FillBounds, modifier = Modifier
                             .width(100.dp)
@@ -561,7 +597,7 @@ fun FightScreenSeq(
 
                         }
                         Text(
-                            text = "Sam",
+                            text = onPlayer2,
                             color = Color.Black,
                             modifier = Modifier
                                 .padding(top = 6.dp)
@@ -573,7 +609,7 @@ fun FightScreenSeq(
                     Spacer(modifier = Modifier.size(10.dp))
 
                     Image(
-                        painter = painterResource(id = R.drawable.farmers),
+                        painter = painterResource(id = onPlayer2Img),
                         contentDescription = "player",
                         contentScale = ContentScale.FillBounds, modifier = Modifier
                             .width(100.dp)
@@ -1117,6 +1153,6 @@ fun PreviewFightScreenSeq() {
         resourceAmount = resourceAmount,
         resourceTotalAmount = totalResourceAmount, onresourceAmount = {
             resourceAmount -= it
-        }, listOfCard = cardList
+        }, listOfCard = cardList, onPlayer1 = "Mysique", onPlayer2 = "Sam", onPlayer1Img = R.drawable.farmers, onPlayer2Img = R.drawable.farmers2
     )
 }

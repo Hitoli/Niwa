@@ -126,7 +126,7 @@ fun NavGraphBuilder.gameNavMap(navHostController: NavController, pad: PaddingVal
                 totalHealthAmountPlant1 = onTotalAmountPlant1,
                 usedHealthAmountPlant1 = onUsedAmountPlant1, onUsedAmountPlant2 = {}, usedHealthAmountPlant2 =onUsedAmountPlant2 , totalHealthAmountPlant2 =onTotalAmountPlant2, resourceTotalAmount =onTotalResourceAmount , resourceAmount = onResourceAmount, onresourceAmount = {
                     onResourceAmount+=it
-                }, listOfCard = cardList)
+                }, listOfCard = cardList, onPlayer2Img = R.drawable.farmers2, onPlayer1Img = R.drawable.farmers, onPlayer2 = "Sam", onPlayer1 = "Mystique")
 //            FightScreen(isPad = pad, onGameResult = {
 //               getAppNavMap()
 //            }, onFight = {
