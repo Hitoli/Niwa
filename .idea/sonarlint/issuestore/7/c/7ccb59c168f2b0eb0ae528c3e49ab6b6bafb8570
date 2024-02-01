@@ -1,0 +1,5 @@
+
+Gkotlin:S1172;"(Remove these unused function parameters.(€¢Õ¢8‘å°Ö1
+_kotlin:S6615!";Remove this variable, which is assigned but never accessed.(ÕËúÿÿÿÿ8’å°Ö1
+Ekotlin:S6615)"&The value assigned here is never used.(‘äşÀ8’å°Ö1
+Okotlin:S1481<"+Remove this unused "result" local variable.(œöâÁûÿÿÿÿ8–å°Ö1

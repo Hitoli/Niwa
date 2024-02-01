@@ -254,3 +254,5 @@ japp/src/main/java/com/example/virtual_plant_pet/Presentation/screen/HomeScreen/
 dapp/src/main/java/com/example/virtual_plant_pet/Presentation/screen/HomeScreen/HomeUtils/CardItem.kt,9\3\93d22585407a247e6161bde64e5fe47590638762
 ‹
 [app/src/main/java/com/example/virtual_plant_pet/Presentation/screen/widgets/DraggleCards.kt,2\a\2aa43386d1335710c6cd09468edab3d31db9ea16
+¢
+rapp/src/main/java/com/example/virtual_plant_pet/Presentation/screen/HomeScreen/FightSequenceScreens/ai_function.kt,7\c\7ccb59c168f2b0eb0ae528c3e49ab6b6bafb8570
